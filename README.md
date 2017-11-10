@@ -20,4 +20,4 @@
 
 # Connection to server via HTTP
 
-```http://asi-17-ihme.insa-rouen.fr```
+[Click me to get super-powers. No fake.](http://asi-17-ihme.insa-rouen.fr)
