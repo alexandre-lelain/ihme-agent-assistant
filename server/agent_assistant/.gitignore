@@ -1,0 +1,6 @@
+*.pyc
+conf/settings.py
+venv/
+doc/_build/
+*/__pycache__
+db.sqlite3*
