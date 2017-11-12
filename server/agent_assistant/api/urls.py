@@ -9,5 +9,5 @@ app_name= 'api'
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^say-hi', views.say_hi, name='say_hi')
+    url(r'^say-hi/$', views.say_hi, name='say_hi')
 ]
