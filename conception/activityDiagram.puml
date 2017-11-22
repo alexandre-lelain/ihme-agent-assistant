@@ -1,0 +1,30 @@
+@startuml
+
+title Activity Diagram \n
+
+start
+
+:User asks assistant\nto program an alarm;
+
+repeat
+    repeat
+      :User writes text;
+      :Analyse input;
+      :Syntax extraction;
+      :Semantic extraction;
+    repeat while (Enough information  ?) is (No)
+    :Asks for confirmation;
+repeat while (confirmed?) is (No)
+
+:Set the alarm;
+
+fork
+    :Set the time;
+fork again
+    :Get the location;
+    :Get the weather;
+    :Set the sound;
+end fork
+stop
+
+@enduml

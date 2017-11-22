@@ -1,0 +1,39 @@
+@startuml title DCP
+
+class Assistant 
+
+class Alarm { 
+    +time 
+    +volume 
+} 
+
+class Location {
+    +latitude
+    +longitude
+}
+
+enum Weather { 
+    +SUNNY 
+    +RAINY 
+    +CLOUDY 
+    +... 
+} 
+
+class SoundPlayer
+
+class Sound
+
+
+
+Location "*"--"1" Weather
+
+Alarm "*"--"1" Sound
+
+Sound "*"-left-"1" SoundPlayer 
+
+Assistant *-- Alarm
+
+Assistant *-- Location
+
+
+@enduml
