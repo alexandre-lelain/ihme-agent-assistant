@@ -1,0 +1,23 @@
+@startuml
+actor User
+entity Assistant
+entity DialogManager
+entity NLU
+entity Input
+
+User -> Assistant : set an alarm
+Assistant -> Input : getInputText()
+Assistant <- Input : raw inputText
+Assistant -> DialogManager : analyseInput(inputText)
+DialogManager -> NLU : syntaxParse(inputText)
+DialogManager <- NLU : parsedSyntax
+
+alt parsedSyntax is correct
+  DialogManager -> NLU : semanticParse(parsedSyntax)
+else parsedSyntax is not correct
+  DialogManager -> Output : informWrongSyntax()
+  Output -> Assistant : response
+  User <- Assistant : diplay error message
+end
+
+@enduml
