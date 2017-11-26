@@ -2,20 +2,38 @@
 
 class Assistant
 
-class DialogManager
+class DialogManager {
+  Gère le dialogue complet
+  ----
+  +NLU nlu
+  +Input in
+  +Output out
+  +checkSyntax(Input in)
+  +checkSemantic(List<Tag>)
+  +answer()
+  +askConfirmation()
+  +analyze()
+}
 
 class NLU {
-  +tags
-  +parseSyntax()
-  +parseSemantic()
+  Analyse le texte
+  ----
+  +List<Tag> tags
+  +parseSyntax(String str)
+  +parseSemantic(List<Tag> tags)
+}
+
+class Tag{
+  +String value
+  +String label
 }
 
 class Input {
-  +inputText
+  +String inputText
 }
 
 class Output {
-  +outputText
+  +String outputText
 }
 
 class Alarm {
@@ -38,6 +56,9 @@ enum Weather {
 class SoundPlayer
 class Sound
 
+class Action {
+}
+
 Location "*"--"1" Weather
 Alarm "*"--"1" Sound
 Sound "*"-left-"1" SoundPlayer
@@ -47,5 +68,6 @@ Assistant *-- DialogManager
 DialogManager *--NLU
 DialogManager *-- Input
 DialogManager *-- Output
+NLU -- Tag
 
 @enduml
