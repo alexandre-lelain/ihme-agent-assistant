@@ -4,28 +4,20 @@ class Assistant
 
 class DialogManager {
   Gère le dialogue complet
-  ----
-  +NLU nlu
-  +Input in
-  +Output out
-  +checkSyntax(Input in)
-  +checkSemantic(List<Tag>)
-  +answer()
-  +askConfirmation()
-  +analyze()
+  --------
 }
 
-class NLU {
+class Tokenizer {
   Analyse le texte
   ----
-  +List<Tag> tags
-  +parseSyntax(String str)
-  +parseSemantic(List<Tag> tags)
 }
 
-class Tag{
+class Token{
   +String value
-  +String label
+  +TokenType type
+}
+
+class TokenType{
 }
 
 class Input {
@@ -34,6 +26,13 @@ class Input {
 
 class Output {
   +String outputText
+}
+
+class AlarmForm{
+    formulaire d'une action : stoque les tokens
+}
+
+class AlarmAction{
 }
 
 class Alarm {
