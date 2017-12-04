@@ -1,56 +1,58 @@
 @startuml
 
-class Tokenizer << (S, orange) Singleton>>{
-    +{static} create(): <b>Tokenizer</b>
-    +tokenize(String text): List<<b>Token</b>>
+class RestServer {
+    +DialogManager dm
+    +handleRequest(HttpRequest req): HttpResponse
 }
-class Token {
-    +<b>TokenType</b> type
-    +String value
-}
-enum TokenType
-hide TokenType methods
 class DialogManager {
-    +parse(<b>Input</b> in): List<<b>Token</b>>
+    +createDialog(): String
+    +sayInDialog(int id, String text): String
+    +confirmActionIn(int id): Action
+    +invalidateAction(int id): String 
 }
-class Dialog {
+abstract class FormDialog <<Resource>> {
+    +{static} int nextid
+    +int id
+    +List<FormField> form
     +addStep(String text): void
+    +{abstract} generateAction(): Action
+    +answer(): String
+    -isFilled(): boolean
 }
-class DialogStep {
-    .. constructor ..
-    +DialogStep(String text): void
-    .. other methods ..
-    +fillForm(<b>Form</b> form): void
+class FormField {
+    +TokenType type
+    +String name
+    +String value
+    +fill(Token token): void
+    +isEmpty(): boolean
 }
-abstract class Form {
-    +{abstract} generateAction(): <b>Action</b>
-}
-class AlarmForm {
-    +generateAction(): <b>AlarmAction</b>
+class AlarmFormDialog {
+    +generateAction(): AlarmAction
 }
 abstract class Action
 class AlarmAction
-class Input {
-    +String text
+class Tokenizer <<(S, orange) Singleton>> {
+    +tokenize(String text): List<Token>
 }
-class Output {
-    +String text
+class Token {
+    +TokenType type
+    +String value
 }
+enum TokenType
 
-DialogManager -left-> Input : reçoit
-DialogManager -> Output : retourne
-DialogManager *-- Dialog : maintient
-Dialog *-- DialogStep : est\ncomposé\nde
-Dialog *-- Form : remplit
-DialogStep *-- Token : est\ncomposé\nde
-DialogStep -left-> Tokenizer : utilise
-Form -> Action : génère
-Form <|-- AlarmForm
-Action <|-- AlarmAction
-AlarmForm .> AlarmAction
+hide TokenType methods
+
+RestServer *-- DialogManager
+DialogManager *-- FormDialog : maintient >
+FormDialog -left-> Tokenizer : utilise
+FormDialog *-- FormField : doit remplir >
 Tokenizer --> Token : détermine
-Token o-- TokenType : est\nde type
-Form -- Token
-
+FormDialog --> Token : est rempli\navec
+Token o- TokenType : est\nde type >
+FormField o-- TokenType : est\nde type >
+FormDialog .> Action : génère
+FormDialog <|-- AlarmFormDialog
+Action <|-- AlarmAction
+AlarmFormDialog .> AlarmAction
 
 @enduml
