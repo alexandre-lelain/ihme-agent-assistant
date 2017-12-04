@@ -1,72 +1,56 @@
 @startuml
 
-class Assistant
-
+class Tokenizer << (S, orange) Singleton>>{
+    +{static} create(): <b>Tokenizer</b>
+    +tokenize(String text): List<<b>Token</b>>
+}
+class Token {
+    +<b>TokenType</b> type
+    +String value
+}
+enum TokenType
+hide TokenType methods
 class DialogManager {
-  Gère le dialogue complet
-  --------
+    +parse(<b>Input</b> in): List<<b>Token</b>>
 }
-
-class Tokenizer {
-  Analyse le texte
-  ----
+class Dialog {
+    +addStep(String text): void
 }
-
-class Token{
-  +String value
-  +TokenType type
+class DialogStep {
+    .. constructor ..
+    +DialogStep(String text): void
+    .. other methods ..
+    +fillForm(<b>Form</b> form): void
 }
-
-class TokenType{
+abstract class Form {
+    +{abstract} generateAction(): <b>Action</b>
 }
-
+class AlarmForm {
+    +generateAction(): <b>AlarmAction</b>
+}
+abstract class Action
+class AlarmAction
 class Input {
-  +String inputText
+    +String text
 }
-
 class Output {
-  +String outputText
+    +String text
 }
 
-class AlarmForm{
-    formulaire d'une action : stoque les tokens
-}
+DialogManager -left-> Input : reçoit
+DialogManager -> Output : retourne
+DialogManager *-- Dialog : maintient
+Dialog *-- DialogStep : est\ncomposé\nde
+Dialog *-- Form : remplit
+DialogStep *-- Token : est\ncomposé\nde
+DialogStep -left-> Tokenizer : utilise
+Form -> Action : génère
+Form <|-- AlarmForm
+Action <|-- AlarmAction
+AlarmForm .> AlarmAction
+Tokenizer --> Token : détermine
+Token o-- TokenType : est\nde type
+Form -- Token
 
-class AlarmAction{
-}
-
-class Alarm {
-    +time
-    +volume
-}
-
-class Location {
-    +latitude
-    +longitude
-}
-
-enum Weather {
-    +SUNNY
-    +RAINY
-    +CLOUDY
-    +...
-}
-
-class SoundPlayer
-class Sound
-
-class Action {
-}
-
-Location "*"--"1" Weather
-Alarm "*"--"1" Sound
-Sound "*"-left-"1" SoundPlayer
-Assistant *-- Alarm
-Assistant *-- Location
-Assistant *-- DialogManager
-DialogManager *--NLU
-DialogManager *-- Input
-DialogManager *-- Output
-NLU -- Tag
 
 @enduml
