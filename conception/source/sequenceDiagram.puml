@@ -1,23 +1,49 @@
 @startuml
 actor User
-entity Assistant
-entity DialogManager
-entity NLU
+entity Agent as Assistant
 entity Input
+entity DialogManager
+entity AlarmFormDialog as NLU
+entity System
 
-User -> Assistant : set an alarm
+User -> Assistant : set an alarm @datetime
+activate Assistant
+activate Input
 Assistant -> Input : getInputText()
-Assistant <- Input : raw inputText
-Assistant -> DialogManager : analyseInput(inputText)
-DialogManager -> NLU : syntaxParse(inputText)
-DialogManager <- NLU : parsedSyntax
-
-alt parsedSyntax is correct
-  DialogManager -> NLU : semanticParse(parsedSyntax)
-else parsedSyntax is not correct
-  DialogManager -> Output : informWrongSyntax()
-  Output -> Assistant : response
-  User <- Assistant : diplay error message
+Assistant <-- Input : inputText
+deactivate Input
+activate DialogManager
+Assistant -> DialogManager : createDialog()
+Assistant <-- DialogManager : dialogId
+Assistant -> DialogManager : sayInDialog(dialogId,inputText)
+activate NLU
+DialogManager -> NLU : addStep(inputText)
+DialogManager <-- NLU
+DialogManager -> NLU : isFilled()
+DialogManager <-- NLU : isFilled
+Assistant <-- DialogManager : isFilled
+alt isFilled is true
+Assistant -> NLU : answer()
+Assistant <-- NLU : answer
+User <- Assistant : askForConfirmation(answer)
+User --> Assistant : confirmed
+Assistant -> DialogManager : confirmAction(dialogId)
+DialogManager -> NLU : generateAction()
+DialogManager <-- NLU : alarmAction
+deactivate NLU
+Assistant <-- DialogManager : alarmAction
+activate System
+Assistant -> System  : setAction(alarmAction)
+Assistant <-- System
+deactivate System
+User <- Assistant : confirmActionIsSet(alarmAction)
+else isFilled is false
+Assistant -> DialogManager : invalidateAction(dialogId)
+Assistant <-- DialogManager : answer
+deactivate DialogManager
+User <- Assistant : askToRepeat(answer)
+deactivate Assistant
 end
+
 
 @enduml
