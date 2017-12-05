@@ -1,0 +1,45 @@
+@startuml
+
+title Packages - Class Diagram
+
+
+
+
+package action {
+  abstract class Action
+  class AlarmAction
+  Action <|-- AlarmAction
+}
+
+package dialog {
+
+  class DialogManager
+  package analyzer {
+    class Tokenizer <<(S, orange) Singleton>>
+    class Token
+    enum TokenType
+    Tokenizer --> Token 
+    Token o-- TokenType 
+  }
+  package form {
+    class FormField
+    abstract class FormDialog <<Resource>>
+    class AlarmFormDialog
+    FormDialog *- FormField 
+    FormDialog <|-- AlarmFormDialog
+  }
+  
+  form -- analyzer
+  form -- action
+  DialogManager -- form
+  DialogManager - action
+
+}
+
+
+
+
+
+
+
+@enduml
