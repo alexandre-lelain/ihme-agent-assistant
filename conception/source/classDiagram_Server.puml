@@ -42,17 +42,17 @@ enum TokenType
 
 hide TokenType methods
 
-RestServer *-- DialogManager
-DialogManager *-- FormDialog : maintient >
-FormDialog -left-> Tokenizer : utilise
-FormDialog *-- FormField : doit remplir >
-Tokenizer --> Token : détermine
-FormDialog --> Token : est rempli\navec
-Token o- TokenType : est\nde type >
-FormField o-- TokenType : est\nde type >
-FormDialog .> Action : génère
+RestServer "1" *-- "1" DialogManager
+DialogManager "1" *-- "*" FormDialog : maintains >
+FormDialog "*" -left-> "1" Tokenizer : uses
+FormDialog "1" *-- "1..*" FormField : must fill >
+Tokenizer "1" --> "*" Token : establishes
+FormDialog "1" --> "*" Token : filled\nwith
+Token "1" o- "1" TokenType : of type >
+FormField "1" o-- "1" TokenType : of type >
+FormDialog "1" -> "1" Action : generates
 FormDialog <|-- AlarmFormDialog
 Action <|-- AlarmAction
-AlarmFormDialog .> AlarmAction
+AlarmFormDialog "1" .> "1" AlarmAction
 
 @enduml
