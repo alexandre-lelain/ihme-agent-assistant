@@ -5,9 +5,9 @@ class RestServer {
     +handleRequest(HttpRequest req): HttpResponse
 }
 class DialogManager {
-    +createDialog(): String
+    +createDialog(): int
     +sayInDialog(int id, String text): String
-    +confirmActionIn(int id): Action
+    +confirmAction(int id): Action
     +invalidateAction(int id): String 
 }
 abstract class FormDialog <<Resource>> {
