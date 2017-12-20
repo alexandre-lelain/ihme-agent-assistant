@@ -1,9 +1,0 @@
-Django==1.11.7
-django-compat==1.0.14
-django-filter==1.1.0
-django-hijack==2.1.4
-django-hijack-admin==2.1.4
-djangorestframework==3.7.3
-Markdown==2.6.9
-pytz==2017.3
-six==1.11.0
