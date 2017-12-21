@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { StyleSheet, ScrollView, View, TextInput, Dimensions } from 'react-native';
+import "moment";
+import "moment/locale/fr";
+import { GiftedChat, Composer, Send } from 'react-native-gifted-chat';
 
+var {height, width} = Dimensions.get('window');
 
 class Dialog extends Component {
 
@@ -12,17 +15,30 @@ class Dialog extends Component {
         };
     }
 
+    renderComposer(props) {
+        return (
+            <Composer {...props} placeholder='Écrivez un message ici...' />
+        );
+    }
+
+    renderSend(props) {
+        return (
+            <Send {...props} label="Envoyer"/>
+        );
+    }
+    
     componentWillMount() {
         this.setState({
             messages: [
                 {
                     _id: 1,
-                    text: 'Hello developer',
+                    text: 'Bonjour, jeune padawan',
                     createdAt: new Date(),
                     // system: true,
                     user: {
                         _id: 2,
                         name: 'Chronos',
+                        avatar: require('./images/chronos.png'),
                     },
                 },
             ],
@@ -43,7 +59,10 @@ class Dialog extends Component {
                 user={{
                     _id: 1,
                 }}
+                locale="fr"
                 isAnimated={true}
+                renderComposer={this.renderComposer}
+                renderSend={this.renderSend}
             />
         );
     }
