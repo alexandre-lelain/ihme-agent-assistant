@@ -1,18 +1,50 @@
-var conf = require("./conf");
-var request = require('request')
-var sessionId = "b79769f7-785a-4f3c-99ac-53a1061a292b"
-var timezone = "Europe/Paris"
-var lang = "fr"
-var base = "https://api.dialogflow.com/v1/query"
+const conf = require("./conf");
+const DialogFlow = require("./dialogFlow");
+var dialogflow = new DialogFlow.DialogFlow(conf.token,"Europe/Paris","fr");
+const intent_list = ["mettre_alarme","salut"];
 
-exports.sayHi = function(req, res) {
-  res.send('Hello World!')
+function confirmQuery(params){
+  for (param in params){
+    if (params[param] === "")
+      return false;
+  }
+  return true;
+}
+
+function getDialogResponse(sessionId,text,confirm){
+  return {
+    sessionId: sessionId,
+    type: "text",
+    text: text,
+    confirm: confirm,
+    error: false
+  }
+}
+
+function sendQueryToDialogFlow(text,sessionId,response){
+  dialogflow.sendQuery(text,sessionId)
+    .then(function(e){
+      const results = e.result;
+      response.send(getDialogResponse(sessionId,results.speech,confirmQuery(results.parameters)));
+    })
+    .catch(function (err) {
+        response.send({error: true});
+        console.log(err);
+    });
+}
+
+exports.createDialogFlow = function(req, res){
+  const sessionId = dialogflow.createNewSessionId();
+  sendQueryToDialogFlow(req.body.text,sessionId,res);
+}
+
+exports.queryDialogFlow = function(req, res) {
+  const sessionId = req.params.id;
+  sendQueryToDialogFlow(req.body.text,sessionId,res);
 };
 
-exports.bravoNils = function(req, res) {
-  var query = req.params.query;
-  var endpoint = `${base}?query=${query}&lang=${lang}&sessionId=${sessionId}&timezone=${timezone}`
-  request.get(endpoint, {'auth': {'bearer': conf.token}}, function(error,response,body){
-      res.send(JSON.parse(body).result.speech)
-  });
+exports.confirmDialogFlow = function(req, res) {
+  const sessionId = req.params.id;
+  const confirm = req.params.value;
+  //sendQueryToDialogFlow(req.body.text,sessionId,res);
 };
