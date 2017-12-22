@@ -3,6 +3,7 @@ import { StyleSheet, ScrollView, View, TextInput, Dimensions } from 'react-nativ
 import "moment";
 import "moment/locale/fr";
 import { GiftedChat, Composer, Send } from 'react-native-gifted-chat';
+import Weather from './Weather';
 
 var {height, width} = Dimensions.get('window');
 
@@ -10,9 +11,13 @@ class Dialog extends Component {
 
     constructor(props) {
         super(props);
+
+        this.weatherManager = new Weather(49.5339, 0.34061);
+        this.weather = this.weatherManager.getWeather();
         this.state = {
             messages: [],
         };
+        console.log("Constructor : "+this.weather);
     }
 
     renderComposer(props) {
@@ -32,7 +37,7 @@ class Dialog extends Component {
             messages: [
                 {
                     _id: 1,
-                    text: 'Bonjour, jeune padawan',
+                    text: "Message : "+this.weather,
                     createdAt: new Date(),
                     // system: true,
                     user: {
