@@ -1,7 +1,10 @@
 const conf = require("./conf");
 const DialogFlow = require("./dialogFlow");
 var dialogflow = new DialogFlow.DialogFlow(conf.token,"Europe/Paris","fr");
-const intent_list = ["mettre_alarme","salut"];
+
+function buildDatetime(date,time){
+  return `${date} ${time}`;
+}
 
 function confirmQuery(params){
   for (param in params){
@@ -11,12 +14,26 @@ function confirmQuery(params){
   return true;
 }
 
-function getDialogResponse(sessionId,text,confirm){
+function getDialogResponseComplete(sessionId,text,datetime){
+  return {
+    sessionId: sessionId,
+    text: text,
+    confirm: true,
+    type: "action",
+    action: {
+      type: "alarm",
+      datetime: datetime
+    },
+    error: false,
+  }
+}
+
+function getDialogResponseUncomplete(sessionId,text){
   return {
     sessionId: sessionId,
     type: "text",
     text: text,
-    confirm: confirm,
+    confirm: false,
     error: false
   }
 }
@@ -24,8 +41,13 @@ function getDialogResponse(sessionId,text,confirm){
 function sendQueryToDialogFlow(text,sessionId,response){
   dialogflow.sendQuery(text,sessionId)
     .then(function(e){
-      const results = e.result;
-      response.send(getDialogResponse(sessionId,results.speech,confirmQuery(results.parameters)));
+      const confirm = confirmQuery(e.result.parameters);
+      if (confirm & e.result.action === "mettre_alarme"){
+        const datetime = buildDatetime(e.result.parameters.date,e.result.parameters.time)
+        response.send(getDialogResponseComplete(sessionId,e.result.speech,datetime));
+      }
+      else
+        response.send(getDialogResponseUncomplete(sessionId,e.result.speech));
     })
     .catch(function (err) {
         response.send({error: true});
@@ -41,10 +63,4 @@ exports.createDialogFlow = function(req, res){
 exports.queryDialogFlow = function(req, res) {
   const sessionId = req.params.id;
   sendQueryToDialogFlow(req.body.text,sessionId,res);
-};
-
-exports.confirmDialogFlow = function(req, res) {
-  const sessionId = req.params.id;
-  const confirm = req.params.value;
-  //sendQueryToDialogFlow(req.body.text,sessionId,res);
 };
