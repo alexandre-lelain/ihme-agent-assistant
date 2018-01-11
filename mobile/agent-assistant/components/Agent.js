@@ -13,7 +13,7 @@ class Agent extends Component {
             messages: [],
         };
         this.manageUserEntry= this.manageUserEntry.bind(this);
-        this.addUserEntry= this.addUserEntry.bind(this);        
+        this.addUserEntry= this.addUserEntry.bind(this);
     }
 
     manageUserEntry(message) {
@@ -128,6 +128,10 @@ class Agent extends Component {
         this.addSystemMessage(`Création d'une alarme pour le ${datestring}`);
     }
     
+    componentDidMount() {
+        this.addAgentEntry("Bienvenue, je suis l'agent Chronos. Vous pouvez me demander de créer une alarme.");
+    }
+
     render() {
         return (
             <Dialog onSend={this.addUserEntry} messages={this.state.messages} />
