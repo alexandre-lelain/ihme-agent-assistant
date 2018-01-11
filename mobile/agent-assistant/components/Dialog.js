@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, ScrollView, View, TextInput, Dimensions, Image } from 'react-native';
 import "moment";
 import "moment/locale/fr";
 import { GiftedChat, Composer, Send, Message, Actions } from 'react-native-gifted-chat';
@@ -31,15 +31,19 @@ class Dialog extends Component {
           <Composer {...props} placeholder='Écrivez un message ici...' />
         );
     }
+
     renderIcon(){
       return (
-        <img src={mic}/>
+        <Image
+          style={{width: 25, height: 25}}
+          source={mic}
+        />
       )
     }
 
-    renderActions(props){
+    renderActions(parent){
       return(
-        <Actions {...props} onPressActionButton={() => {this.getUserVoiceInput}} icon={this.renderIcon}/>
+        <Actions onPressActionButton={parent.getUserVoiceInput} icon={this.renderIcon}/>
       )
     }
 
@@ -65,7 +69,7 @@ class Dialog extends Component {
                 }}
                 locale="fr"
                 isAnimated={true}
-                renderActions={this.renderActions}
+                renderActions={() => this.renderActions(this)}
                 renderComposer={this.renderComposer}
                 renderSend={this.renderSend}
             />
