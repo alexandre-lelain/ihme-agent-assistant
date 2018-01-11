@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, View, TextInput, Dimensions } from 'react-native';
 import "moment";
 import "moment/locale/fr";
-import { GiftedChat, Composer, Send, Message } from 'react-native-gifted-chat';
+import { GiftedChat, Composer, Send, Message, Actions } from 'react-native-gifted-chat';
 import Weather from './Weather';
+import mic from "./images/mic.png";
 
 var {height, width} = Dimensions.get('window');
 
@@ -17,13 +18,29 @@ class Dialog extends Component {
         this.state = {
             weather: "",
         };
+        this.getUserVoiceInput = this.getUserVoiceInput.bind(this);
         console.log("Dialog Constructor : "+this.weather);
+    }
+
+    getUserVoiceInput(){
+      console.log("TOUCHE");
     }
 
     renderComposer(props) {
         return (
-            <Composer {...props} placeholder='Écrivez un message ici...' />
+          <Composer {...props} placeholder='Écrivez un message ici...' />
         );
+    }
+    renderIcon(){
+      return (
+        <img src={mic}/>
+      )
+    }
+
+    renderActions(props){
+      return(
+        <Actions {...props} onPressActionButton={() => {this.getUserVoiceInput}} icon={this.renderIcon}/>
+      )
     }
 
     renderSend(props) {
@@ -48,6 +65,7 @@ class Dialog extends Component {
                 }}
                 locale="fr"
                 isAnimated={true}
+                renderActions={this.renderActions}
                 renderComposer={this.renderComposer}
                 renderSend={this.renderSend}
             />
