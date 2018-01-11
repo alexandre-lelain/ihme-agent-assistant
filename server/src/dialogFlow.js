@@ -17,7 +17,7 @@ exports.DialogFlow = class {
   }
 
   buildEndpoint(query,sessionId){
-    return `${this.base}?query=${query}&lang=${this.lang}&sessionId=${sessionId}&timezone=${this.timezone}`
+    return encodeURI(`${this.base}?query=${query}&lang=${this.lang}&sessionId=${sessionId}&timezone=${this.timezone}`)
   }
 
   buildOptions(query,sessionId){
