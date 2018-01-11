@@ -1,6 +1,9 @@
 const config = require("./config/config.js");
 // config.apiKey 
 
+
+DEFAULT_WEATHER = "Clear";
+
 class Weather {
     constructor(longitude, latitude) {
         this.longitude = longitude;
@@ -25,7 +28,7 @@ class Weather {
         }
     }
 
-    getWeather(){
+    getWeather(callback){
         var weatherName = "";
         this.getWeatherInfos().then(weathers => {
             var weatherIDs = [];
@@ -38,7 +41,8 @@ class Weather {
             console.log(e)
         });
 
-        return weatherName;
+        // return weatherName;
+        callback(weatherName);
     }
 
     getWeatherGlobal(weatherIDs) {
@@ -56,7 +60,7 @@ class Weather {
             } else if (this.idBeginsWith(weatherID, "90")) {
                 return "Extreme";
             } else {
-                return "Clear";
+                return DEFAULT_WEATHER;
             }
         }
     }

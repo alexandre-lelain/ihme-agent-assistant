@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, View, TextInput, Dimensions } from 'react-native';
 import "moment";
 import "moment/locale/fr";
-import { GiftedChat, Composer, Send } from 'react-native-gifted-chat';
+import { GiftedChat, Composer, Send, Message } from 'react-native-gifted-chat';
 import Weather from './Weather';
 
 var {height, width} = Dimensions.get('window');
@@ -13,11 +13,11 @@ class Dialog extends Component {
         super(props);
 
         this.weatherManager = new Weather(49.5339, 0.34061);
-        this.weather = this.weatherManager.getWeather();
+        // this.weather = this.weatherManager.getWeather();
         this.state = {
-            messages: [],
+            weather: "",
         };
-        console.log("Constructor : "+this.weather);
+        console.log("Dialog Constructor : "+this.weather);
     }
 
     renderComposer(props) {
@@ -31,35 +31,17 @@ class Dialog extends Component {
             <Send {...props} label="Envoyer"/>
         );
     }
-    
-    componentWillMount() {
-        this.setState({
-            messages: [
-                {
-                    _id: 1,
-                    text: "Message : "+this.weather,
-                    createdAt: new Date(),
-                    // system: true,
-                    user: {
-                        _id: 2,
-                        name: 'Chronos',
-                        avatar: require('./images/chronos.png'),
-                    },
-                },
-            ],
-        });
-    }
 
     onSend(messages = []) {
-        this.setState((previousState) => ({
-            messages: GiftedChat.append(previousState.messages, messages),
-        }));
+        messages.forEach(message => {
+            this.props.onSend(message.text);
+        });
     }
 
     render() {
         return (
             <GiftedChat
-                messages={this.state.messages}
+                messages={this.props.messages}
                 onSend={(messages) => this.onSend(messages)}
                 user={{
                     _id: 1,
