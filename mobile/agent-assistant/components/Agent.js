@@ -123,13 +123,13 @@ class Agent extends Component {
     }
 
     createAlarm() {
-        var datestring = this.alarmTime.getDate() + '/' +
-                         (this.alarmTime.getMonth() + 1) + '/' +
-                         this.alarmTime.getFullYear() + ' à ' +
-                         (this.alarmTime.getHours() + 1) + 'h' +
+        var datestring = this.alarmTime.getDate() + '-' +
+                         (this.alarmTime.getMonth() + 1) + '-' +
+                         this.alarmTime.getFullYear() + '  ' +
+                         (this.alarmTime.getHours() + 1) + ':' +
                          (this.alarmTime.getMinutes() + 1);
         this.addSystemMessage(`Création d'une alarme pour le ${datestring}`);
-    }
+      }
 
     componentDidMount() {
         this.addAgentEntry("Bienvenue, je suis l'agent Chronos. Vous pouvez me demander de créer une alarme.");
