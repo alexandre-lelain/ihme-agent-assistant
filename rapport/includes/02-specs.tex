@@ -1,0 +1,52 @@
+\chapter{Spécifications}
+
+Dans cette partie, nous décrirons le principe de fonctionnement souhaité de l'agent \texttt{Chronos}, les objectifs de ce projet puis nous aborderons les problématiques que soulève la conception d'un tel agent.
+
+% Description, problématique, objectifs ..
+\section{Principe de l'agent}
+Le principe de l'agent \texttt{Chronos} est assez simple. Il s'agit d'un agent conversationnel, accessible depuis une application mobile (disponible sur \texttt{iOS} et \texttt{Android}) capable de répondre à certaines requêtes de l'utilisateur. 
+
+\subsection{Création d'une alarme}
+L'idée principale est qu'un utilisateur doit pouvoir demander à l'agent de lui programmer une alarme. Pour cela, il doit lui fournir un certain nombre d'informations :
+\begin{itemize}
+    \item s'il veut ou non programmer une alarme ;
+    \item le jour auquel programmer l'alarme ;
+    \item l'heure à laquelle programmer l'alarme.
+\end{itemize}
+
+~\\\indent
+Dans qu'il manque certaines de ces informations, l'agent doit orienter ses questions de sorte à obtenir toutes les réponses dont il a besoin.
+
+\subsection{Alarme intelligente}
+Dès lors que l'agent est en possession de toutes les informations nécessaires à la programmation d'une alarme, il doit alors être capable d'obtenir la géolocalisation de l'utilisateur (couple $\{\text{longitude} / \text{latitude} \}$). 
+
+En fonction de cette géolocalisation, l'agent doit pouvoir obtenir la météo du lieu où se situe l'utilisateur. % 2h avant réveil ou truc mesuré avant ou par défaut
+
+
+% Finir avec cartes trello (Romain)
+% Relire tout pour cohérence
+
+
+
+
+
+
+
+\section{Objectifs}
+L'objectif général de cet agent est qu'il soit possible de communiquer avec lui en langage naturel, c'est-à-dire dans le langage utilisé par les humains. 
+
+~\\\indent
+L'agent doit également être robuste. Il doit en effet être capable d'indiquer à l'utilisateur s'il n'est pas capable de traiter une requête sans pour autant se mettre à disfonctionner.
+
+~\\\indent 
+Il est également souhaité que les réponses de l'agent soient rapides voire instantanées, de sorte à donner une impression de dialogue avec un autre humain. 
+
+Les comportements de l'agents doivent donc s'apparenter le plus possible à ceux que pourraient avoir des êtres humains.
+
+~\\\indent
+Il n'est en revanche pas imposé que l'agent virtuel soit représenté par un avatar quelconque. Le but ici est de pouvoir dialoguer avec \texttt{Chronos} de façon textuelle ou orale.
+
+
+
+\section{Problématiques}
+
