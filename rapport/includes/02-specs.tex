@@ -1,13 +1,21 @@
 \chapter{Spécifications}
 
-Dans cette partie, nous décrirons le principe de fonctionnement souhaité de l'agent \texttt{Chronos}, les objectifs de ce projet puis nous aborderons les problématiques que soulève la conception d'un tel agent.
+Dans cette partie, nous décrirons le principe de fonctionnement souhaité de l'agent \texttt{Chronos}, puis nous aborderons les problématiques que soulève la conception d'un tel agent.
 
-% Description, problématique, objectifs ..
-\section{Principe de l'agent}
-Le principe de l'agent \texttt{Chronos} est assez simple. Il s'agit d'un agent conversationnel, accessible depuis une application mobile (disponible sur \texttt{iOS} et \texttt{Android}) capable de répondre à certaines requêtes de l'utilisateur. 
+La description de toutes ces spécifications orientera par la suite les approches théoriques et techniques retenues.
+
+
+\section{Principe de l'agent souhaité}
+Le principe de l'agent \texttt{Chronos} souhaité est assez simple. Il s'agit de réaliser un agent conversationnel, accessible depuis une application mobile (disponible sur \texttt{iOS} et \texttt{Android}) capable de répondre à certaines requêtes de l'utilisateur. 
+
+Il doit être possible de dialoguer avec l'agent de façon écrite ou bien de façon orale. 
+
+Le système de dialogue souhaité doit reposer sur un modèle de communication \og client \--- serveur \fg.
 
 \subsection{Création d'une alarme}
-L'idée principale est qu'un utilisateur doit pouvoir demander à l'agent de lui programmer une alarme. Pour cela, il doit lui fournir un certain nombre d'informations :
+L'idée principale est qu'un utilisateur doit pouvoir demander à l'agent de lui programmer une alarme. 
+
+Pour cela, il doit lui fournir un certain nombre d'informations :
 \begin{itemize}
     \item s'il veut ou non programmer une alarme ;
     \item le jour auquel programmer l'alarme ;
@@ -15,25 +23,32 @@ L'idée principale est qu'un utilisateur doit pouvoir demander à l'agent de lui
 \end{itemize}
 
 ~\\\indent
-Dans qu'il manque certaines de ces informations, l'agent doit orienter ses questions de sorte à obtenir toutes les réponses dont il a besoin.
+Dès lors qu'il ne dispose pas de toutes ces informations, l'agent doit orienter ses questions de sorte à obtenir toutes les réponses dont il a besoin.
+
+~\\\indent 
+L'ordre dans lequel l'agent recueille ces différentes informations ne doit pas avoir d'importance. Ainsi, il doit être possible de donner l'heure avant le jour ou réciproquement.
 
 \subsection{Alarme intelligente}
-Dès lors que l'agent est en possession de toutes les informations nécessaires à la programmation d'une alarme, il doit alors être capable d'obtenir la géolocalisation de l'utilisateur (couple $\{\text{longitude} / \text{latitude} \}$). 
+\`A partir du moment où l'agent est en possession de toutes les informations nécessaires à la programmation d'une alarme, il doit alors être capable d'obtenir la géolocalisation de l'utilisateur (couple $\{\text{longitude} / \text{latitude} \}$). 
 
-En fonction de cette géolocalisation, l'agent doit pouvoir obtenir la météo du lieu où se situe l'utilisateur. % 2h avant réveil ou truc mesuré avant ou par défaut
+~\\\indent 
+En fonction de cette géolocalisation, l'agent doit pouvoir obtenir la météo du lieu où se situe l'utilisateur. Selon cette météo, la musique associée à l'alarme variera. 
+
+Par exemple, s'il pleut dans la ville où est situé l'utilisateur, la musique associée à l'alarme sera une musique de pluie.
+
+~\\\indent
+La géolocalisation et la météo seront mesurées 2 heures avant le déclenchement effectif de l'alarme, de sorte à pouvoir avoir une musique la plus adaptée possible à la météo du lieu où est géolocalisé l'utilisateur.
+
+Dans le cas où il n'est pas possible de mesurer la météo et/ou la géolocalisation 2 heures avant le déclenchement de l'alarme, les valeurs de ces deux informations correspondront à celles mesurées lors de la programmation de l'alarme.
 
 
-% Finir avec cartes trello (Romain)
-% Relire tout pour cohérence
 
 
+\section{Problématiques}
+L'objectif général de cet agent est qu'il soit possible de communiquer avec lui en langage naturel, c'est-à-dire dans le langage utilisé par les humains, de façon orale et écrite. 
 
-
-
-
-
-\section{Objectifs}
-L'objectif général de cet agent est qu'il soit possible de communiquer avec lui en langage naturel, c'est-à-dire dans le langage utilisé par les humains. 
+~\\\indent
+Comme nous l'avons vu plus tôt, le système de dialogue mis en place doit permettre de réunir un ensemble d'informations.
 
 ~\\\indent
 L'agent doit également être robuste. Il doit en effet être capable d'indiquer à l'utilisateur s'il n'est pas capable de traiter une requête sans pour autant se mettre à disfonctionner.
@@ -46,7 +61,7 @@ Les comportements de l'agents doivent donc s'apparenter le plus possible à ceux
 ~\\\indent
 Il n'est en revanche pas imposé que l'agent virtuel soit représenté par un avatar quelconque. Le but ici est de pouvoir dialoguer avec \texttt{Chronos} de façon textuelle ou orale.
 
+~\\\indent 
+Enfin, la mise en place de cet agent doit être rapide, dans le cadre d'un projet de type \emph{Proof Of Concept} (\emph{POC}).
 
-
-\section{Problématiques}
 
