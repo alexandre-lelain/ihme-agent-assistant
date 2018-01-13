@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView, View, TextInput, Dimensions, Image } from 'react-native';
-import "moment";
-import "moment/locale/fr";
 import { GiftedChat, Composer, Send, Message, Actions } from 'react-native-gifted-chat';
+import Voice from 'react-native-voice';
 import Weather from './Weather';
 import mic from "./images/mic.png";
+import "moment";
+import "moment/locale/fr";
 
 var {height, width} = Dimensions.get('window');
 
@@ -12,18 +13,20 @@ class Dialog extends Component {
 
     constructor(props) {
         super(props);
-
         this.weatherManager = new Weather(49.5339, 0.34061);
-        // this.weather = this.weatherManager.getWeather();
         this.state = {
             weather: "",
         };
         this.getUserVoiceInput = this.getUserVoiceInput.bind(this);
-        console.log("Dialog Constructor : "+this.weather);
+        Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
+    }
+
+    onSpeechResultsHandler(event){
+      this.props.addUserEntry(event.value[0]);
     }
 
     getUserVoiceInput(){
-      console.log("TOUCHE");
+      Voice.start('fr');
     }
 
     renderComposer(props) {

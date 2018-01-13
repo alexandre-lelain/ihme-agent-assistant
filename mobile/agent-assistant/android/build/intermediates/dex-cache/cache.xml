@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_25a796981d2e45a40f66b02396af69c5abf1c9d5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_e20d1a712d2db147abbf24337825a4119148f460.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_153430c61e631f1fe9262c35bce5fd940c9e43f7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_d6e53ed3aa1daa497b216964a7e92cd272de4dcd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_31b899484314a7837c006889e1cee4e55e0a53da.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_287f62bf5aece60f26fb0555516cf0ad3fe37420.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_53970fa5a2abc584f2c3303588d24f897f4d1cd9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/agentassistant/react-native-voice/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="063edebd4635d0bf49c2f38fd15f1896d9badb8c">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/agentassistant-react-native-voice-unspecified_ddf7c7f3f14dffd4ac6672c38df157baa4c1b516.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.49.5/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_be38be8c9c00ce79235acae419e8e9178478bcac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_c7c83d5ee1f3647d93d309908be0a6281dfdbc8e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.49.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="610b957661a666d16b2cd4664c6bf4370226dfd2">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.49.5_c11be5c516095d7b021ec0ded9b256f865abfeb3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_1484c6e0af794f4dc91ac87803ca1bb1ac5961c7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_0b41882841ca3705d0d0da43311664941f136033.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_c7df3bebb12802126f5a306bd2cd830904dddfcc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/agentassistant/react-native-tts/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="de9c9eb794daab970b6be2c14d8b65737647dbe8">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/agentassistant-react-native-tts-unspecified_0b7f2e62e07ad5fe471f0c22ce2431e260e4c289.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_0d6b9ba588bfeeb68db1a667e2a56c8fef3d1ee7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_7066e9731f66b1817ac7d6237d3356175ae6d12a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_e6241c7d068801932e50eefa4391d13a3200c752.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_e3bd9d817e1b55a45130d2b0e177362ce1574b81.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_4a1a5dcd22005dc9f850c047aa3df769077fd111.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_df97c1c3f94dbce74fa438bee0f3468dd7227bac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_6ddb2a93eddeca13c8547c5138a936422a32e813.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_248a89cfcb00d6dacdf44e47065dfc5fc885d8c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_3d63585bd01d6cf03114cace01da5c351d03f85b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/home/alexandre/Bureau/IHME/ihme-agent-assistant/mobile/agent-assistant/android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_e86de348a00e94acf695ab4eeffe88774eaada1f.jar" />
+    </item>
+
+</items>
