@@ -5,7 +5,6 @@ import Tts from 'react-native-tts';
 import AgentAPI from './api/AgentAPI';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-
 class Agent extends Component {
 
     constructor(props) {
@@ -13,9 +12,10 @@ class Agent extends Component {
         this.state = {
             messages: [],
         };
-        this.manageUserEntry= this.manageUserEntry.bind(this);
-        this.addUserEntry= this.addUserEntry.bind(this);
+        this.manageUserEntry = this.manageUserEntry.bind(this);
+        this.addUserEntry = this.addUserEntry.bind(this);
         Tts.setDefaultLanguage('fr-FR');
+        Tts.setDucking(true);
     }
 
     manageUserEntry(message) {
@@ -94,7 +94,7 @@ class Agent extends Component {
     }
 
     addAgentEntry(newMessage) {
-        Tts.speak(newMessage)
+        Tts.speak(newMessage);
         var message = {
             _id: this.state.messages.length,
             text: newMessage,
@@ -137,7 +137,7 @@ class Agent extends Component {
 
     render() {
         return (
-            <Dialog onSend={this.addUserEntry} messages={this.state.messages} />
+            <Dialog onSend={this.addUserEntry} messages={this.state.messages} addUserEntry={this.addUserEntry.bind(this)}/>
         );
     }
 }
