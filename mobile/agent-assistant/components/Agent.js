@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {StyleSheet, TextInput, View, ScrollView, Alert} from 'react-native';
 import Dialog from './Dialog';
+import Tts from 'react-native-tts';
 import AgentAPI from './api/AgentAPI';
 import { GiftedChat } from 'react-native-gifted-chat';
-
 
 class Agent extends Component {
 
@@ -12,8 +12,10 @@ class Agent extends Component {
         this.state = {
             messages: [],
         };
-        this.manageUserEntry= this.manageUserEntry.bind(this);
-        this.addUserEntry= this.addUserEntry.bind(this);
+        this.manageUserEntry = this.manageUserEntry.bind(this);
+        this.addUserEntry = this.addUserEntry.bind(this);
+        Tts.setDefaultLanguage('fr-FR');
+        Tts.setDucking(true);
     }
 
     manageUserEntry(message) {
@@ -90,8 +92,9 @@ class Agent extends Component {
         }));
         this.manageUserEntry(newMessage);
     }
-    
+
     addAgentEntry(newMessage) {
+        Tts.speak(newMessage);
         var message = {
             _id: this.state.messages.length,
             text: newMessage,
@@ -105,7 +108,7 @@ class Agent extends Component {
         this.setState((previousState) => ({
             messages: GiftedChat.append(previousState.messages, message),
         }));
-    }  
+    }
 
     addSystemMessage(newMessage) {
         var message = {
@@ -120,21 +123,21 @@ class Agent extends Component {
     }
 
     createAlarm() {
-        var datestring = this.alarmTime.getDate() + '/' +
-                         (this.alarmTime.getMonth() + 1) + '/' +
-                         this.alarmTime.getFullYear() + ' à ' +
-                         (this.alarmTime.getHours() + 1) + 'h' +
+        var datestring = this.alarmTime.getDate() + '-' +
+                         (this.alarmTime.getMonth() + 1) + '-' +
+                         this.alarmTime.getFullYear() + '  ' +
+                         (this.alarmTime.getHours() + 1) + ':' +
                          (this.alarmTime.getMinutes() + 1);
         this.addSystemMessage(`Création d'une alarme pour le ${datestring}`);
-    }
-    
+      }
+
     componentDidMount() {
         this.addAgentEntry("Bienvenue, je suis l'agent Chronos. Vous pouvez me demander de créer une alarme.");
     }
 
     render() {
         return (
-            <Dialog onSend={this.addUserEntry} messages={this.state.messages} />
+            <Dialog onSend={this.addUserEntry} messages={this.state.messages} addUserEntry={this.addUserEntry.bind(this)}/>
         );
     }
 }
