@@ -1,0 +1,42 @@
+\chapter{Installation du Serveur}
+
+\section{Pré-requis}
+La partie serveur est un serveur \textbf{REST} dans un environnement \emph{Node.js} qui communique avec \emph{DialogFlow}, l'agent conversationnel de l'application. Vous devez donc avoir installé les paquets suivants :
+\begin{itemize}
+\item \textbf{node} (dernière version recommandé)
+\item \textbf{npm} (dernière version recommandé)\\
+\end{itemize}
+
+
+L'application à également besoin d'une clef d'API "bearer\_token" qui permet d'utiliser l'API de \emph{DialogFlow}: elle devrait être fournie avec le livrable. Sinon, contacter \emph{alexandre.le\_lain@insa-rouen.fr} pour l'obtenir.
+Vous devez également posséder le login et le mot de passe du compte \emph{Google} qui permet d'accéder à l'interface de \emph{DialogFlow}.
+
+\section{Installation}
+
+Se placer dans \textbf{ihme-agent-assistant/server/}
+
+\subsection{Dépendances}
+
+Installation des dépendances :
+  \begin{lstlisting}[language=bash]
+      npm install
+  \end{lstlisting}
+
+\subsection{Paramétrage}
+
+Créer un fichier \textbf{src/conf.js} contenant :
+\begin{lstlisting}[language=bash]
+  exports.token = [bearer_token];
+\end{lstlisting}
+
+\subsection{Lancement}
+
+Pour lancer une instance du serveur :
+\begin{lstlisting}[language=bash]
+  npm start
+\end{lstlisting}
+
+\subsection{DialogFlow}
+
+Pour configurer et concevoir l'agent conversationnel (l'entité responsable du traitement et de l'analyse des dialogues) il faut se connecter à \emph{https://dialogflow.com/} avec le compte
+qui vous a été fourni avec le livrable. Cette interface vous permettra de personnaliser l'IA en fonction de vos besoins.

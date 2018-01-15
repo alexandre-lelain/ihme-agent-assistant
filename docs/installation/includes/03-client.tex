@@ -1,0 +1,61 @@
+\chapter{Installation de l'application mobile}
+
+\section{Pré-requis}
+L'application mobile est une application écrite avec \emph{react-native}. Vous devez donc avoir installé les paquets suivants :
+\begin{itemize}
+\item \textbf{node} (node 9.x recommandé)
+\item \textbf{npm} (npm 4.6.1 recommandé)
+\item \textbf{react-native} (react-native 0.49.x recommandé)
+\item \textbf{android-sdk} (dernière version recommandé)\\
+\end{itemize}
+
+
+L'application à également besoin d'une clef d'API "OpenWeatherMap\_APIKey" : elle devrait être fournie avec le livrable. Sinon, contacter \emph{alexandre.le\_lain@insa-rouen.fr} pour l'obtenir.
+\section{Installation}
+
+Se placer dans \textbf{ihme-agent-assistant/mobile/agent-assistant/}
+
+\subsection{Dépendances}
+
+Installation des dépendances :
+\begin{lstlisting}[language=bash]
+  npm install
+\end{lstlisting}
+
+\subsection{Paramétrage}
+
+\begin{enumerate}
+  \item Créer un fichier \textbf{android/local.properties} contenant :
+  \begin{lstlisting}[language=bash]
+  sdk.dir = [chemin vers votre sdk android]
+  \end{lstlisting}
+  \item Créer un fichier \textbf{components/config/config.js} contenant :
+  \begin{lstlisting}[language=Javascript]
+  exports.apiKey = [OpenWeatherMap_APIKey];
+  \end{lstlisting}
+  \item L'application mobile doit se connecter à la partie serveur pour fonctionner. Pour cela il faut indiquer l'adresse de ce dernier en
+  éditant la 1ère ligne du fichier \textbf{components/api/AgentAPI.js}. Par défaut, l'url pointe vers \emph{http://asi-17-ihme.insa-rouen.fr} qui est le serveur prété
+  par l'insa sur lequel tourne une instance de la partie serveur.
+\end{enumerate}
+
+\subsection{Lancement}
+
+Pour lancer l'application sur votre mobile :
+\begin{enumerate}
+  \item Vérifiez que votre mobile est en mode débuggage
+  \item Connectez votre mobile à l'ordinateur via le câble USB
+  \item Compiler et lancer l'application sur votre mobile Android :
+  \begin{lstlisting}[language=bash]
+    react-native run-android
+  \end{lstlisting}
+  ou pour IOS :
+  \begin{lstlisting}[language=bash]
+    react-native run-ios
+  \end{lstlisting}
+  \item Lancer Packager en mode développement (optionnel):
+  \begin{lstlisting}[language=bash]
+    npm start
+  \end{lstlisting}
+\end{enumerate}
+
+Voilà, l'application devrait maintenant être installée sur votre mobile, et votre envrionnement est configuré pour son développement.
