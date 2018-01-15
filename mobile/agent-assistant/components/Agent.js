@@ -4,6 +4,8 @@ import Dialog from './Dialog';
 import Tts from 'react-native-tts';
 import AgentAPI from './api/AgentAPI';
 import { GiftedChat } from 'react-native-gifted-chat';
+import Weather from './Weather';
+
 
 class Agent extends Component {
 
@@ -123,13 +125,18 @@ class Agent extends Component {
     }
 
     createAlarm() {
-        var datestring = this.alarmTime.getDate() + '-' +
-                         (this.alarmTime.getMonth() + 1) + '-' +
-                         this.alarmTime.getFullYear() + '  ' +
-                         (this.alarmTime.getHours() + 1) + ':' +
-                         (this.alarmTime.getMinutes() + 1);
-        this.addSystemMessage(`Création d'une alarme pour le ${datestring}`);
-      }
+        var self = this;
+        var datestring = self.alarmTime.getDate() + '/' +
+                         (self.alarmTime.getMonth() + 1) + '/' +
+                         self.alarmTime.getFullYear() + ' à ' +
+                         (self.alarmTime.getHours() - 1) + 'h' +
+                         self.alarmTime.getMinutes();
+        let weather = new Weather();
+        weather.myGetWeather(function (weather) {
+            self.weather = weather;
+            self.addSystemMessage(`Création d'une alarme pour le ${datestring}. Météo utilisée par défaut : ${self.weather}`);        
+        });
+    }
 
     componentDidMount() {
         this.addAgentEntry("Bienvenue, je suis l'agent Chronos. Vous pouvez me demander de créer une alarme.");

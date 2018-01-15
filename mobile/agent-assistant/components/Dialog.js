@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, View, TextInput, Dimensions, Image } from 'react-native';
 import { GiftedChat, Composer, Send, Message, Actions } from 'react-native-gifted-chat';
 import Voice from 'react-native-voice';
-import Weather from './Weather';
 import mic from "./images/mic.png";
 import "moment";
 import "moment/locale/fr";
@@ -13,10 +12,6 @@ class Dialog extends Component {
 
     constructor(props) {
         super(props);
-        this.weatherManager = new Weather(49.5339, 0.34061);
-        this.state = {
-            weather: "",
-        };
         this.getUserVoiceInput = this.getUserVoiceInput.bind(this);
         Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
     }
