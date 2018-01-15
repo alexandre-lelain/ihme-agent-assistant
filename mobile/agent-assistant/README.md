@@ -22,5 +22,5 @@ npm start
 #Mettre a jour la version du SDK
 
 ```
-android list sdk --all
+android update sdk --all
 ```

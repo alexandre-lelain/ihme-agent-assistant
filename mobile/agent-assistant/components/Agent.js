@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {StyleSheet, TextInput, View, ScrollView, Alert} from 'react-native';
+import {NativeModules, StyleSheet, TextInput, View, ScrollView, Alert} from 'react-native';
 import Dialog from './Dialog';
+import "moment";
+import "moment/locale/fr";
 import Tts from 'react-native-tts';
 import AgentAPI from './api/AgentAPI';
 import { GiftedChat } from 'react-native-gifted-chat';
@@ -51,6 +53,7 @@ class Agent extends Component {
         // demander confirmation : l'utilisateur doit répondre "oui"/"non"
         if (action.type === "alarm" && action.datetime) {
             var datetime = action.datetime.replace(" ", "T") + "Z";
+            console.log(datetime)
             parent.alarmTime = new Date(datetime);
             Alert.alert(
                 "Confirmation",
@@ -126,9 +129,10 @@ class Agent extends Component {
         var datestring = this.alarmTime.getDate() + '-' +
                          (this.alarmTime.getMonth() + 1) + '-' +
                          this.alarmTime.getFullYear() + '  ' +
-                         (this.alarmTime.getHours() + 1) + ':' +
-                         (this.alarmTime.getMinutes() + 1);
+                         (this.alarmTime.getHours() - 1) + ':' +
+                         (this.alarmTime.getMinutes());
         this.addSystemMessage(`Création d'une alarme pour le ${datestring}`);
+        NativeModules.ChronosAlarmManager.setAlarm(datestring);
       }
 
     componentDidMount() {

@@ -2,6 +2,7 @@ package com.agentassistant;
 
 import android.app.Application;
 
+import com.agentassistant.alarmmanager.*;
 import com.facebook.react.ReactApplication;
 import com.wenkesj.voice.VoicePackage;
 import net.no_mad.tts.TextToSpeechPackage;
@@ -25,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ChronosAlarmManagerPackage(),
             new VoicePackage(),
             new TextToSpeechPackage()
       );
