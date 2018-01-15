@@ -7,7 +7,7 @@ import "moment";
 import "moment/locale/fr";
 import Tts from 'react-native-tts';
 
-var {height, width} = Dimensions.get('window');
+var { height, width } = Dimensions.get('window');
 
 class Dialog extends Component {
 
@@ -17,39 +17,39 @@ class Dialog extends Component {
         Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
     }
 
-    onSpeechResultsHandler(event){
-      this.props.addUserEntry(event.value[0]);
+    onSpeechResultsHandler(event) {
+        this.props.addUserEntry(event.value[0]);
     }
 
-    getUserVoiceInput(){
+    getUserVoiceInput() {
         Tts.stop();
-      Voice.start('fr');
+        Voice.start('fr');
     }
 
     renderComposer(props) {
         return (
-          <Composer {...props} placeholder='Écrivez un message ici...' />
+            <Composer {...props} placeholder='Écrivez un message ici...' />
         );
     }
 
-    renderIcon(){
-      return (
-        <Image
-          style={{width: 25, height: 25}}
-          source={mic}
-        />
-      )
+    renderIcon() {
+        return (
+            <Image
+                style={{ width: 25, height: 25 }}
+                source={mic}
+            />
+        )
     }
 
-    renderActions(parent){
-      return(
-        <Actions onPressActionButton={parent.getUserVoiceInput} icon={this.renderIcon}/>
-      )
+    renderActions(parent) {
+        return (
+            <Actions onPressActionButton={parent.getUserVoiceInput} icon={this.renderIcon} />
+        )
     }
 
     renderSend(props) {
         return (
-            <Send {...props} label="Envoyer"/>
+            <Send {...props} label="Envoyer" />
         );
     }
 
