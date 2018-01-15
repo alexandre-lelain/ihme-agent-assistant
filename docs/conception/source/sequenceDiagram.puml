@@ -1,0 +1,65 @@
+@startuml
+actor User
+entity Agent as Assistant
+entity DialogView as Dialog
+entity AgentAPI
+entity RestServer as server
+entity DialogManager as dm
+entity AlarmFormDialog as NLU
+
+User -> Assistant : set alarm at @datetime
+activate Assistant
+Assistant -> Dialog : getInput()
+activate Dialog
+Assistant <-- Dialog : newMessage
+deactivate Dialog
+Assistant -> Assistant: addUserEntry(newMessage)
+activate Assistant
+Assistant -> AgentAPI : createDialog(newMessage)
+activate AgentAPI
+AgentAPI -> server : HttpRequest
+activate server
+server -> dm : createDialog(newMessage)
+activate dm
+dm -> dm : generateSessionId()
+activate dm
+dm <-- dm : id
+deactivate dm
+dm -> NLU : addStep(newMessage,id)
+activate NLU
+NLU -> NLU : analyseDialog()
+activate NLU
+NLU <-- NLU : results
+deactivate NLU
+dm <-- NLU : action, response
+dm -> dm : confirmQuery(response)
+activate dm
+dm <-- dm : confirm
+deactivate dm
+alt if action == "alarme" && confirm == true
+dm -> dm : getDialogResponseComplete(sessionId,text,datetime)
+else else
+dm -> dm : getDialogResponseUncomplete(sessionId,text)
+end
+activate dm
+dm <-- dm : response
+deactivate dm
+server <-- dm
+deactivate dm
+AgentAPI <-- server : HttpResponse
+deactivate server
+Assistant <-- AgentAPI : response
+deactivate AgentAPI
+deactivate Assistant
+alt if response.confirm == true
+Assistant -> Assistant : confirm(response)
+activate Assistant
+Assistant -> User : askForConfirmation(response)
+User -> Assistant : confirmation
+Assistant -> Assistant : setAlarm(date)
+deactivate Assistant
+else else
+Assistant -> User : displayResponse(response)
+deactivate Assistant
+end
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+
+class Agent
+class Input {
+    +read()
+}
+class Output {
+    +write()
+}
+class Dialog {
+    +addAgentEntry(String text)
+    +addUserEntry(String text)
+}
+class System {
+    +setAlarm()
+    +getLocation()
+}
+abstract class API {
+    +{abstract} connect()
+    +{abstract} query(...)
+    +{abstract} end()
+}
+class AgentAPI {
+    +beginDialog(): int
+    +talk(int id, String text)
+    +...()
+}
+class WeatherAPI {
+    +getWeatherForLocation()
+}
+
+Agent "1" o- "1" Input : reads >
+Agent "1" o- "1" Output : writes to >
+Agent "1" o-up- "*" Dialog : manages
+Agent "1" -left-> "1" System : is part\nof / uses
+Agent "1" --> "2" API : calls
+API <|-- AgentAPI
+API <|-- WeatherAPI
+
+@enduml

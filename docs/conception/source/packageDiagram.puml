@@ -1,0 +1,60 @@
+@startuml
+
+package server {
+
+    class RestServer
+
+    package dialog {
+
+      class DialogManager
+
+      package analyzer {
+        class Tokenizer <<(S, orange) Singleton>>
+        class Token
+        enum TokenType
+        Tokenizer --> Token
+        Token o-- TokenType
+      }
+
+      package form {
+        class FormField
+        abstract class FormDialog <<Resource>>
+        class AlarmFormDialog
+        FormDialog *- FormField
+        FormDialog <|-- AlarmFormDialog
+      }
+
+      RestServer -- DialogManager
+      form -- analyzer
+      DialogManager -- form
+
+    }
+}
+
+package client {
+class Agent
+package system {
+    package io {
+        class Input
+        class Output
+    }
+    class System
+}
+class Dialog
+
+package api {
+    abstract class API
+    class AgentAPI
+    class WeatherAPI
+}
+API <|-- AgentAPI
+API <|-- WeatherAPI
+
+Agent  -down-  io
+Agent - api
+Agent  o-up-  Dialog
+Agent  -down-  system
+
+}
+
+@enduml

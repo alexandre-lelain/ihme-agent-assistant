@@ -1,0 +1,16 @@
+% En-têtes et pieds-de-page
+\pagestyle{fancy}
+\renewcommand\headrulewidth{1pt}
+\fancyhead[L]{\small{\leftmark}}
+\fancyhead[R]{\includegraphics[scale=0.2]{images/logoasi.png}}
+\fancyhfoffset{0pt}
+\fancyfoot[R]{\setstretch{0,8}\scriptsize{Gautier \textsc{Darchen}\\Romain \textsc{Judic}\\Etienne \textsc{Jules}\\Alexandre \textsc{Le Lain}}}
+\fancyfoot[L]{\includegraphics[scale=0.14]{images/LogoINSA.png}}
+\renewcommand{\headrule}{{%
+ \color{black}\hrule \headwidth \headrulewidth \vskip-\headrulewidth}}
+\titleformat{\section}%
+[hang]% style du titre (hang, display, runin, leftmargin, drop, wrap)
+{\Large\bfseries}%changement de fonte commun au numéro et au titre
+{\thesection}% spécification du numéro
+{1em}% espace entre le numéro et le titre
+{}% changement de fonte du titre
