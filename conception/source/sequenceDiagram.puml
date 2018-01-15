@@ -1,49 +1,65 @@
 @startuml
 actor User
 entity Agent as Assistant
-entity Input
-entity DialogManager
+entity DialogView as Dialog
+entity AgentAPI
+entity RestServer as server
+entity DialogManager as dm
 entity AlarmFormDialog as NLU
-entity System
 
-User -> Assistant : set an alarm @datetime
+User -> Assistant : set alarm at @datetime
 activate Assistant
-activate Input
-Assistant -> Input : getInputText()
-Assistant <-- Input : inputText
-deactivate Input
-activate DialogManager
-Assistant -> DialogManager : createDialog()
-Assistant <-- DialogManager : dialogId
-Assistant -> DialogManager : sayInDialog(dialogId,inputText)
+Assistant -> Dialog : getInput()
+activate Dialog
+Assistant <-- Dialog : newMessage
+deactivate Dialog
+Assistant -> Assistant: addUserEntry(newMessage)
+activate Assistant
+Assistant -> AgentAPI : createDialog(newMessage)
+activate AgentAPI
+AgentAPI -> server : HttpRequest
+activate server
+server -> dm : createDialog(newMessage)
+activate dm
+dm -> dm : generateSessionId()
+activate dm
+dm <-- dm : id
+deactivate dm
+dm -> NLU : addStep(newMessage,id)
 activate NLU
-DialogManager -> NLU : addStep(inputText)
-DialogManager <-- NLU
-DialogManager -> NLU : isFilled()
-DialogManager <-- NLU : isFilled
-Assistant <-- DialogManager : isFilled
-alt isFilled is true
-Assistant -> NLU : answer()
-Assistant <-- NLU : answer
-User <- Assistant : askForConfirmation(answer)
-User --> Assistant : confirmed
-Assistant -> DialogManager : confirmAction(dialogId)
-DialogManager -> NLU : generateAction()
-DialogManager <-- NLU : alarmAction
+NLU -> NLU : analyseDialog()
+activate NLU
+NLU <-- NLU : results
 deactivate NLU
-Assistant <-- DialogManager : alarmAction
-activate System
-Assistant -> System  : setAction(alarmAction)
-Assistant <-- System
-deactivate System
-User <- Assistant : confirmActionIsSet(alarmAction)
-else isFilled is false
-Assistant -> DialogManager : invalidateAction(dialogId)
-Assistant <-- DialogManager : answer
-deactivate DialogManager
-User <- Assistant : askToRepeat(answer)
+dm <-- NLU : action, response
+dm -> dm : confirmQuery(response)
+activate dm
+dm <-- dm : confirm
+deactivate dm
+alt if action == "alarme" && confirm == true
+dm -> dm : getDialogResponseComplete(sessionId,text,datetime)
+else else
+dm -> dm : getDialogResponseUncomplete(sessionId,text)
+end
+activate dm
+dm <-- dm : response
+deactivate dm
+server <-- dm
+deactivate dm
+AgentAPI <-- server : HttpResponse
+deactivate server
+Assistant <-- AgentAPI : response
+deactivate AgentAPI
+deactivate Assistant
+alt if response.confirm == true
+Assistant -> Assistant : confirm(response)
+activate Assistant
+Assistant -> User : askForConfirmation(response)
+User -> Assistant : confirmation
+Assistant -> Assistant : setAlarm(date)
+deactivate Assistant
+else else
+Assistant -> User : displayResponse(response)
 deactivate Assistant
 end
-
-
 @enduml

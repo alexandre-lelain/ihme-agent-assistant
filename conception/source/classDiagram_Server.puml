@@ -5,17 +5,17 @@ class RestServer {
     +handleRequest(HttpRequest req): HttpResponse
 }
 class DialogManager {
-    +createDialog(): int
-    +sayInDialog(int id, String text): String
-    +confirmAction(int id): Action
-    +invalidateAction(int id): String 
+    +createDialog(String text): HttpResponse
+    +queryDialog(int id, String text): HttpResponse
+    +confirmQuery(Json params): boolean
+    +getDialogResponseComplete(int id,String text, String datetime): Json body
+    +getDialogResponseUncomplete(int id,String text): Json body
 }
 abstract class FormDialog <<Resource>> {
     +{static} int nextid
     +int id
     +List<FormField> form
     +addStep(String text): void
-    +{abstract} generateAction(): Action
     +answer(): String
     -isFilled(): boolean
 }
@@ -26,11 +26,6 @@ class FormField {
     +fill(Token token): void
     +isEmpty(): boolean
 }
-class AlarmFormDialog {
-    +generateAction(): AlarmAction
-}
-abstract class Action
-class AlarmAction
 class Tokenizer <<(S, orange) Singleton>> {
     +tokenize(String text): List<Token>
 }
@@ -50,9 +45,5 @@ Tokenizer "1" --> "*" Token : establishes
 FormDialog "1" --> "*" Token : filled\nwith
 Token "1" o- "1" TokenType : of type >
 FormField "1" o-- "1" TokenType : of type >
-FormDialog "1" -> "1" Action : generates
-FormDialog <|-- AlarmFormDialog
-Action <|-- AlarmAction
-AlarmFormDialog "1" .> "1" AlarmAction
 
 @enduml

@@ -8,7 +8,7 @@ start
 
 repeat
     repeat
-      :User writes text;
+      :User writes text/speaks;
       :Analyse input;
       :Syntax extraction;
       :Semantic extraction;

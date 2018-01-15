@@ -1,40 +1,33 @@
 @startuml
 
-title Packages - Class Diagram
-
-
-
 package server {
 
-    package action {
-      abstract class Action
-      class AlarmAction
-      Action <|-- AlarmAction
-    }
-    
+    class RestServer
+
     package dialog {
-    
+
       class DialogManager
+
       package analyzer {
         class Tokenizer <<(S, orange) Singleton>>
         class Token
         enum TokenType
-        Tokenizer --> Token 
-        Token o-- TokenType 
+        Tokenizer --> Token
+        Token o-- TokenType
       }
+
       package form {
         class FormField
         abstract class FormDialog <<Resource>>
         class AlarmFormDialog
-        FormDialog *- FormField 
+        FormDialog *- FormField
         FormDialog <|-- AlarmFormDialog
       }
-      
+
+      RestServer -- DialogManager
       form -- analyzer
-      form -- action
-      DialogManager - form
-      DialogManager - action
-    
+      DialogManager -- form
+
     }
 }
 
@@ -42,17 +35,17 @@ package client {
 class Agent
 package system {
     package io {
-        class Input 
-        class Output 
+        class Input
+        class Output
     }
-    class System 
+    class System
 }
-class Dialog 
+class Dialog
 
 package api {
-    abstract class API 
-    class AgentAPI 
-    class WeatherAPI 
+    abstract class API
+    class AgentAPI
+    class WeatherAPI
 }
 API <|-- AgentAPI
 API <|-- WeatherAPI
@@ -60,6 +53,8 @@ API <|-- WeatherAPI
 Agent  -down-  io
 Agent - api
 Agent  o-up-  Dialog
-Agent  -down-  system 
- 
+Agent  -down-  system
+
 }
+
+@enduml
