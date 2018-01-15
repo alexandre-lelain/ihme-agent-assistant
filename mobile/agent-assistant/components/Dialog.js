@@ -5,6 +5,7 @@ import Voice from 'react-native-voice';
 import mic from "./images/mic.png";
 import "moment";
 import "moment/locale/fr";
+import Tts from 'react-native-tts';
 
 var {height, width} = Dimensions.get('window');
 
@@ -21,6 +22,7 @@ class Dialog extends Component {
     }
 
     getUserVoiceInput(){
+        Tts.stop();
       Voice.start('fr');
     }
 

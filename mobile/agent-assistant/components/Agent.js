@@ -5,6 +5,7 @@ import Tts from 'react-native-tts';
 import AgentAPI from './api/AgentAPI';
 import { GiftedChat } from 'react-native-gifted-chat';
 import Weather from './Weather';
+import Notification from 'react-native-push-notification';
 
 
 class Agent extends Component {
@@ -54,6 +55,7 @@ class Agent extends Component {
         if (action.type === "alarm" && action.datetime) {
             var datetime = action.datetime.replace(" ", "T") + "Z";
             parent.alarmTime = new Date(datetime);
+            parent.alarmTime.setHours(parent.alarmTime.getHours() - 1);
             Alert.alert(
                 "Confirmation",
                 message,
@@ -69,11 +71,13 @@ class Agent extends Component {
     manageConfirmed() {
         // confirmation
         // creer une alarme
+        Tts.stop();
         this.createAlarm();
     }
 
     manageDeclined() {
         // l'utilisateur ne confirme pas la proposition d'alarme
+        Tts.stop();        
         this.sessionId = undefined;
         this.addSystemMessage("Proposition d'alarme déclinée.");
         this.addAgentEntry("Très bien. Que puis-je faire pour vous ?");
@@ -129,12 +133,21 @@ class Agent extends Component {
         var datestring = self.alarmTime.getDate() + '/' +
                          (self.alarmTime.getMonth() + 1) + '/' +
                          self.alarmTime.getFullYear() + ' à ' +
-                         (self.alarmTime.getHours() - 1) + 'h' +
+                         self.alarmTime.getHours() + 'h' +
                          self.alarmTime.getMinutes();
         let weather = new Weather();
         weather.myGetWeather(function (weather) {
             self.weather = weather;
-            self.addSystemMessage(`Création d'une alarme pour le ${datestring}. Météo utilisée par défaut : ${self.weather}`);        
+            self.addSystemMessage(`Création d'une alarme pour le ${datestring}.\nMétéo utilisée par défaut : ${self.weather}`);
+            var soundName = self.weather.toLowerCase() + ".mp3";
+            Notification.localNotificationSchedule({
+                message: "Votre agent Chronos vous réveille !",
+                date: self.alarmTime,
+                soundName: soundName,
+                popInitialNotification: true,
+                vibrate: true,
+                color: "blue"
+            });
         });
     }
 
