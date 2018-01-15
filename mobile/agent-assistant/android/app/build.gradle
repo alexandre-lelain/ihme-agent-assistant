@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-push-notification')
     compile project(':react-native-voice')
     compile project(':react-native-tts')
     compile fileTree(dir: "libs", include: ["*.jar"])
