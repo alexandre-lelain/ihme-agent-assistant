@@ -1,13 +1,10 @@
-const config = require("./config/config.js");
-// config.apiKey 
-
+import System from '../tools/System';
+const config = require("../config/config.js");
 
 DEFAULT_WEATHER = "Clear";
 
-class Weather {
+class WeatherAPI {
     constructor() {
-        // this.longitude = longitude;
-        // this.latitude = latitude;
     }
 
     buildOpenWeatherMapURI(longitude, latitude, apiKey) {
@@ -28,49 +25,28 @@ class Weather {
         }
     }
 
-    getWeather(callback){
-        var weatherName = "";
-        this.getWeatherInfos().then(weathers => {
-            var weatherIDs = [];
-            weathers.forEach(function(weather){
-                weatherIDs.push(weather.id);
-            });
-            console.log("WEATHER : " + this.getWeatherGlobal(weatherIDs));
-            weatherName = this.getWeatherGlobal(weatherIDs);
-        }).catch( e => {
-            console.log(e)
-        });
-
-        // return weatherName;
-        callback(weatherName);
-    }
-
-    myGetWeather(resolve) {
-        // var weatherName = "";
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
+    getWeather(resolve) {
+        var self = this;
+        System.getLocation(
+            function (position) {
                 let latitude = position.coords.latitude;
                 let longitude = position.coords.longitude;
-                this.getWeatherInfos(latitude, longitude).then(weathers => {
+                self.getWeatherInfos(latitude, longitude).then(weathers => {
                     var weatherIDs = [];
                     weathers.forEach(function(weather){
                         weatherIDs.push(weather.id);
                     });
-                    console.log("WEATHER : " + this.getWeatherGlobal(weatherIDs));
-                    // weatherName = this.getWeatherGlobal(weatherIDs);
-                    resolve(this.getWeatherGlobal(weatherIDs));
+                    console.log("WEATHER : " + self.getWeatherGlobal(weatherIDs));
+                    resolve(self.getWeatherGlobal(weatherIDs));
                 }).catch( e => {
-                    console.log(e)
-                    // weatherName = DEFAULT_WEATHER;
+                    console.log(e);
                     resolve(DEFAULT_WEATHER);                    
                 });
             },
-            (error) => {
-                // weatherName = DEFAULT_WEATHER
+            function () {
                 resolve(DEFAULT_WEATHER);
             } 
         );
-        // resolve(weatherName);
     }
 
     getWeatherGlobal(weatherIDs) {
@@ -102,4 +78,4 @@ class Weather {
     }
 }
 
-export default Weather;
+export default WeatherAPI;

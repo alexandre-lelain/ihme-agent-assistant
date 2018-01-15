@@ -4,9 +4,9 @@ import Dialog from './Dialog';
 import Tts from 'react-native-tts';
 import AgentAPI from './api/AgentAPI';
 import { GiftedChat } from 'react-native-gifted-chat';
-import Weather from './Weather';
-import Notification from 'react-native-push-notification';
-
+import WeatherAPI from './api/WeatherAPI';
+import DateTools from './tools/DateTools';
+import System from './tools/System';
 
 class Agent extends Component {
 
@@ -53,9 +53,7 @@ class Agent extends Component {
         // on a toutes les infos
         // demander confirmation : l'utilisateur doit répondre "oui"/"non"
         if (action.type === "alarm" && action.datetime) {
-            var datetime = action.datetime.replace(" ", "T") + "Z";
-            parent.alarmTime = new Date(datetime);
-            parent.alarmTime.setHours(parent.alarmTime.getHours() - 1);
+            parent.alarmTime = DateTools.createDateFromDialogFlow(action.datetime);
             Alert.alert(
                 "Confirmation",
                 message,
@@ -130,27 +128,19 @@ class Agent extends Component {
 
     createAlarm() {
         var self = this;
-        var datestring = self.alarmTime.getDate() + '/' +
-                         (self.alarmTime.getMonth() + 1) + '/' +
-                         self.alarmTime.getFullYear() + ' à ' +
-                         self.alarmTime.getHours() + 'h' +
-                         self.alarmTime.getMinutes();
-        let weather = new Weather();
-        weather.myGetWeather(function (weather) {
-            self.weather = weather;
-            self.addSystemMessage(`Création d'une alarme pour le ${datestring}.\nMétéo utilisée par défaut : ${self.weather}`);
-            var soundName = self.weather.toLowerCase() + ".mp3";
-            Notification.localNotificationSchedule({
-                message: "Votre agent Chronos vous réveille !",
-                date: self.alarmTime,
-                soundName: soundName,
-                popInitialNotification: true,
-                vibrate: true,
-                color: "blue"
-            });
+        var formattedDate = DateTools.formatDate(self.alarmTime);
+        let weatherAPI = new WeatherAPI();
+        weatherAPI.getWeather(function (weather) {
+            self.addSystemMessage(`Création d'une alarme pour le ${formattedDate}.`);
+            var soundName = `${weather.toLowerCase()}.mp3`;
+            var diff = DateTools.getIntervalForNotification(self.alarmTime);
+            setTimeout(function () {
+                self.addSystemMessage(`Météo pour la prochaine alarme : ${weather}.`);
+                System.setAlarm("Votre agent Chronos vous réveille !", self.alarmTime, soundName);
+            }, diff);
         });
     }
-
+   
     componentDidMount() {
         this.addAgentEntry("Bienvenue, je suis l'agent Chronos. Vous pouvez me demander de créer une alarme.");
     }

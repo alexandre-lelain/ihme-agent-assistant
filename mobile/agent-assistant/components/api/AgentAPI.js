@@ -1,8 +1,6 @@
-import API from './API';
-
 const url = "http://asi-17-ihme.insa-rouen.fr";
 
-class AgentAPI extends API {
+class AgentAPI {
 
     static createDialog(text, resolve, reject) {
         let endpoint = `${url}/dialog/create`;
@@ -31,6 +29,5 @@ class AgentAPI extends API {
         });
     }
 }
-
 
 export default AgentAPI;
