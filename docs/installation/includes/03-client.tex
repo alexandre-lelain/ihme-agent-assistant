@@ -6,11 +6,14 @@ L'application mobile est une application écrite avec \emph{react-native}. Vous 
 \item \textbf{node} (node 9.x recommandé)
 \item \textbf{npm} (npm 4.6.1 recommandé)
 \item \textbf{react-native} (react-native 0.49.x recommandé)
-\item \textbf{android-sdk} (dernière version recommandé)\\
+\item \textbf{android-sdk} (dernière version recommandée)\\
 \end{itemize}
 
 
-L'application à également besoin d'une clef d'API "OpenWeatherMap\_APIKey" : elle devrait être fournie avec le livrable. Sinon, contacter \emph{alexandre.le\_lain@insa-rouen.fr} pour l'obtenir.
+L'application a également besoin d'une clef d'API \og \emph{OpenWeatherMap\_APIKey} \fg{} : elle devrait être fournie également avec le livrable. 
+
+Sinon, contacter un membre de l'équipe pour l'obtenir.
+
 \section{Installation}
 
 Se placer dans \textbf{ihme-agent-assistant/mobile/agent-assistant/}
@@ -33,9 +36,11 @@ Installation des dépendances :
   \begin{lstlisting}[language=Javascript]
   exports.apiKey = [OpenWeatherMap_APIKey];
   \end{lstlisting}
+
+  où \og \emph{OpenWeatherMap\_APIKey} \fg{} correspond à la clef liée à notre compte \emph{OpenWeatherMap} (accessible sur \url{https://openweathermap.org/}).
+
   \item L'application mobile doit se connecter à la partie serveur pour fonctionner. Pour cela il faut indiquer l'adresse de ce dernier en
-  éditant la 1ère ligne du fichier \textbf{components/api/AgentAPI.js}. Par défaut, l'url pointe vers \emph{http://asi-17-ihme.insa-rouen.fr} qui est le serveur prété
-  par l'insa sur lequel tourne une instance de la partie serveur.
+  éditant la 1ère ligne du fichier \textbf{components/api/AgentAPI.js}. Par défaut, l'url pointe vers \url{http://asi-17-ihme.insa-rouen.fr} qui est le serveur prété par l'INSA sur lequel tourne une instance de la partie serveur.
 \end{enumerate}
 
 \subsection{Lancement}
@@ -44,7 +49,7 @@ Pour lancer l'application sur votre mobile :
 \begin{enumerate}
   \item Vérifiez que votre mobile est en mode débuggage
   \item Connectez votre mobile à l'ordinateur via le câble USB
-  \item Compiler et lancer l'application sur votre mobile Android :
+  \item Compilez et lancez l'application sur votre mobile Android :
   \begin{lstlisting}[language=bash]
     react-native run-android
   \end{lstlisting}
@@ -52,7 +57,13 @@ Pour lancer l'application sur votre mobile :
   \begin{lstlisting}[language=bash]
     react-native run-ios
   \end{lstlisting}
-  \item Lancer Packager en mode développement (optionnel):
+
+  \textbf{Remarque : } Si vous travailler sur MacOS, le déploiement de l'application se fait par la commande :
+  \begin{lstlisting}[language=bash]
+    npm run my-android
+  \end{lstlisting}
+
+  \item Lancer \emph{Packager} en mode développement (optionnel):
   \begin{lstlisting}[language=bash]
     npm start
   \end{lstlisting}
