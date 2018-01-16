@@ -33,27 +33,20 @@ package server {
 
 package client {
 class Agent
-package system {
-    package io {
-        class Input
-        class Output
-    }
+package tools {
     class System
 }
 class Dialog
 
 package api {
-    abstract class API
     class AgentAPI
     class WeatherAPI
 }
-API <|-- AgentAPI
-API <|-- WeatherAPI
 
-Agent  -down-  io
 Agent - api
 Agent  o-up-  Dialog
-Agent  -down-  system
+Agent  -down-  tools
+api - tools
 
 }
 

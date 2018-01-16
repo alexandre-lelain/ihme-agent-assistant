@@ -1,6 +1,5 @@
 @startuml
 
-title Use Case Diagram 
 left to right direction
 
 actor :User: as user

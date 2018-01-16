@@ -1,7 +1,5 @@
 @startuml
 
-title Activity Diagram \n
-
 start
 
 :User asks assistant\nto program an alarm;
