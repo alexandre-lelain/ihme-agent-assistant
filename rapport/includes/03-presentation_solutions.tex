@@ -4,7 +4,7 @@ Maintenant que la problématique a été établie le but était de définir les 
 
 
 \section{Caractéristiques du problème}
-Notre agent assistant devra implémenter un système de dialogues avec l'utilisateur répondant aux critères suivants :
+Notre agent assistant devra implémenter un système de dialogue avec l'utilisateur répondant aux critères suivants :
 \begin{itemize}
 	\item le dialogue doit permettre de réunir un ensemble d'informations (heure, jour);
  	\item l'ordre des informations recueillies n'est pas défini (on peut donner l'heure avant le jour, ou le contraire);
@@ -14,10 +14,10 @@ Notre agent assistant devra implémenter un système de dialogues avec l'utilisa
 \end{itemize}
 
 \section{Solutions scientifiques existantes}
-Notre problématique générale est donc d'implémenter un système de dialogue. Plusieurs solutions existent pour ce genre de problème et nous avons donc étudié les plus répandues pour choisir celle (ou celles) qui serait la plus adéquate à notre problème. Notament avant de pouvoir réaliser la conception, il nous a fallu définir quel serait notre gestion de dialogue (par formulaire, par état de l'information, ... etc), qui risque fortement d'impacter la manière dont nous allons réaliser notre projet et par conséquent notre conception.
+Notre problématique générale est donc d'implémenter un système de dialogue. Plusieurs solutions existent pour ce genre de problème et nous avons donc étudié les plus répandues pour choisir celle (ou celles) qui serait la plus adéquate à notre problème. Notament avant de pouvoir réaliser la conception, il nous a fallu définir quelle serait notre gestion de dialogue (par formulaire, par état de l'information, ... etc), qui risque fortement d'impacter la manière dont nous allons réaliser notre projet et par conséquent notre conception.
 
 \subsection{Analyse syntaxique}
-Un analyseur syntaxique pourrait être utilisé pour notre projet. Le principe de cette solution serait de mettre en évidence la structure du texte envoyé par l'utilisateur. Ainsi l'analyseur pourrait savoir quel est le verbe de la phrase, les compléments d'objets, le sujet etc... 
+Un analyseur syntaxique pourrait être utilisé pour notre projet. Le principe de cette solution serait de mettre en évidence la structure du texte envoyé par l'utilisateur. Ainsi l'analyseur pourrait savoir quel est le verbe de la phrase, les compléments d'objets, le sujet, etc... 
 
 Il retournerait alors un arbre syntaxique (figures \ref{arbre-syntaxique} et \ref{arbre-syntaxique2}). 
 
@@ -44,23 +44,23 @@ Il retournerait alors un arbre syntaxique (figures \ref{arbre-syntaxique} et \re
 ~\\\indent
 Cette solution pourrait sans doute être implémentée pour notre problème. Mais cela ne résoudrait qu'une partie de notre problématique. En effet il resterait toujours à trouver une solution pour détecter et stocker les informations utiles à notre problème comme l'heure et le jour du réveil. 
 
-De plus cette solution semble difficile à implémenter de manière rapide pour un projet de type \og \emph{Proof of Concept} \fg.
+De plus cette solution semble difficile à implémenter de manière rapide pour un projet de type \emph{Proof of Concept}.
 
 \FloatBarrier
 
 \subsection{Le dialogue par état de l'information ou ISU (Information State Update)}
 
-L'approche ISU (Information State Update) est un cadre de gestion de dialogue. Le principe des différentes théories ISU est l'idée d'un état de l'information qui est modifié par des règles de mise à jour déclenchées par des mouvements de dialogue. En substance, une théorie de dialogue ISU consiste à:
+L'approche ISU (Information State Update) est un cadre de gestion de dialogue. Le principe des différentes théories ISU est l'idée d'un état de l'information qui est modifié par des règles de mise à jour déclenchées par des mouvements de dialogue. En substance, une théorie de dialogue ISU consiste en:
 \begin{itemize}
-	\item Une caractérisation des états de l'information, qui décrit tous les aspects du contexte commun ainsi que les facteurs de motivation internes.
-	\item Un ensemble de mouvements de dialogue. Ceux-ci sont généralement associés à des énoncés ou à des parties d'énoncés par les entités participants au dialogue.
-	\item Un ensemble de règles de mise à jour, qui régissent la mise à jour de l'état des informations. Une règle de mise à jour consiste en une liste de conditions préalables sur l'état d'information et une liste d'effets qui modifient l'état d'information.
-	\item Une stratégie de mise à jour pour décider quelle(s) règle(s) sélectionner à un moment donné
+	\item une caractérisation des états de l'information, qui décrit tous les aspects du contexte commun ainsi que les facteurs de motivation internes ;
+	\item un ensemble de mouvements de dialogue. Ceux-ci sont généralement associés à des énoncés ou à des parties d'énoncés par les entités participants au dialogue ;
+	\item un ensemble de règles de mise à jour, qui régissent la mise à jour de l'état des informations. Une règle de mise à jour consiste en une liste de conditions préalables sur l'état d'information et une liste d'effets qui modifient l'état d'information ;
+	\item une stratégie de mise à jour pour décider quelle(s) règle(s) sélectionner à un moment donné.
 \end{itemize}
 
 ~\\\indent
-Une librairie Python permet de facilité l'implémentation de ce paradigme de gestion de dialogue: Trindikit. \\
-Cette solution pourrait s'adapter à notre projet car elle est très général et peut s'adapter à un grand éventail de dialogue possible. Mais elle est aussi très complexe et nécessite une étude approfondie des théories ISU ainsi qu'une formation complète sur la librairie Trindikit qui est par ailleurs peu documentée et pas mise à jour. Cette solution ne satisfait donc pas le critère : \og la mise en place doit être rapide, réalisable dans un projet de type \textit{Proof of Concept} \fg. Nus avons donc décider d'écarter cette solution.
+Une librairie Python permet de faciliter l'implémentation de ce paradigme de gestion de dialogue: \textit{Trindikit}. \\
+Cette solution pourrait s'adapter à notre projet car elle est très générale et peut s'adapter à un grand éventail de dialogues possibles. Mais elle est aussi très complexe et nécessite une étude approfondie des théories ISU ainsi qu'une formation complète sur la librairie Trindikit qui est par ailleurs peu documentée et pas mise à jour. Cette solution ne satisfait donc pas le critère : \og la mise en place doit être rapide, réalisable dans un projet de type \textit{Proof of Concept} \fg. Nous avons donc décidé d'écarter cette solution.
 
 
 
@@ -71,20 +71,21 @@ Le dialogue par formulaire est une technique de gestion de dialogue qui permet �
 
 Il pourra enregistrer dans différents champs de son formulaire les informations récoltées. Il pourra ensuite envoyer les données du formulaire à un module de traitement qui effectuera des actions en conséquence de ces données.
 
+La figure \ref{form-dialog} illustre ce principe.
 \begin{figure}[H]
 \centering
     \includegraphics[scale=0.7]{images/slot.png} %www.dfki.de
     \caption{Principe du dialogue par formulaire}
+    \label{form-dialog}
 \end{figure}
 
 Cette solution serait très avantageuse pour notre projet. 
-
 En effet, elle répond à tous les critères énoncés précédemment : 
 \begin{itemize}
     \item elle permet de réunir des informations (ici dans un formulaire) ;
     \item l'ordre des informations n'est pas défini ;
     \item l'entrée de l'utilisateur est en langage naturel ainsi que la réponse de l'agent ;
-    \item la mise en place peut sembler être assez longue mais une application en ligne \textit{DialogFlow} permet de faciliter ceci et rendre l'implémentation d'un dialogue par formulaire beaucoup plus rapide.
+    \item la mise en place peut sembler être assez longue mais une application en ligne, \textit{DialogFlow}, permet de faciliter ceci et rendre l'implémentation d'un dialogue par formulaire beaucoup plus rapide.
 \end{itemize}
 
 
