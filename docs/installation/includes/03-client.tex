@@ -10,7 +10,7 @@ L'application mobile est une application écrite avec \emph{react-native}. Vous 
 \end{itemize}
 
 
-L'application a également besoin d'une clef d'API \og \emph{OpenWeatherMap\_APIKey} \fg{} : elle devrait être fournie également avec le livrable. 
+L'application a également besoin d'une clef d'API \og \emph{OpenWeatherMap\_APIKey} \fg{} : elle devrait être fournie également avec le livrable\footnote{Fichier \texttt{docs/installation/accounts\_and\_api\_keys.md}}. 
 
 Sinon, contacter un membre de l'équipe pour l'obtenir.
 
@@ -37,7 +37,7 @@ Installation des dépendances :
   exports.apiKey = [OpenWeatherMap_APIKey];
   \end{lstlisting}
 
-  où \og \emph{OpenWeatherMap\_APIKey} \fg{} correspond à la clef liée à notre compte \emph{OpenWeatherMap} (accessible sur \url{https://openweathermap.org/}).
+  où \og \emph{OpenWeatherMap\_APIKey} \fg{} correspond à la clef liée à notre compte \emph{OpenWeatherMap}\footnote{Fichier \texttt{docs/installation/accounts\_and\_api\_keys.md}}.
 
   \item L'application mobile doit se connecter à la partie serveur pour fonctionner. Pour cela il faut indiquer l'adresse de ce dernier en
   éditant la 1ère ligne du fichier \textbf{components/api/AgentAPI.js}. Par défaut, l'url pointe vers \url{http://asi-17-ihme.insa-rouen.fr} qui est le serveur prété par l'INSA sur lequel tourne une instance de la partie serveur.
