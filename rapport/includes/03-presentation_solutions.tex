@@ -10,35 +10,35 @@ Notre agent assistant devra implémenter un système de dialogue avec l'utilisat
  	\item l'ordre des informations recueillies n'est pas défini (on peut donner l'heure avant le jour, ou le contraire);
  	\item l'entrée de l'utilisateur est textuelle ou bien vocale et en langage naturel ;
  	\item la réponse fournie par l'agent est elle aussi textuelle ou vocale ;
- 	\item la mise en place est rapide, réalisable dans un projet de type \og \textit{Proof of Concept} \fg.
+ 	\item la mise en place est rapide, réalisable dans un projet de type \textit{Proof of Concept}.
 \end{itemize}
 
 \section{Solutions scientifiques}
 
 \subsection{Gestion de dialogue}
-Notre problématique générale est donc d'implémenter un système de dialogue. Plusieurs solutions existent pour ce genre de problème et nous avons donc étudié les plus répandues pour choisir celle (ou celles) qui serait la plus adéquate à notre problème. Notamment avant de pouvoir réaliser la conception, il nous a fallu définir quel serait notre gestion de dialogue (par formulaire, état de l'information, ... etc). Ce choix était primordial car il risquait fortement d'impacter la manière dont nous allions réaliser notre projet et par conséquent notre conception.
+Notre problématique générale est donc d'implémenter un système de dialogue. Plusieurs solutions existent pour ce genre de problème et nous avons donc étudié les plus répandues pour choisir celle (ou celles) qui serait la plus adéquate à notre problème. Notamment avant de pouvoir réaliser la conception, il nous a fallu définir quelle serait notre gestion de dialogue (par formulaire, état de l'information, ... etc). Ce choix était primordial car il risquait fortement d'impacter la manière dont nous allions réaliser notre projet et par conséquent notre conception.
 
 
 \FloatBarrier
 
 \subsubsection{Le dialogue par état de l'information ou ISU (Information State Update)}
 
-L'approche ISU (Information State Update) est un cadre de gestion de dialogue. Le principe des différentes théories ISU est l'idée d'un état de l'information qui est modifié par des règles de mise à jour déclenchées par des mouvements de dialogue. En résumé, une théorie de dialogue ISU consiste à:
+L'approche ISU (Information State Update) est un cadre de gestion de dialogue. Le principe des différentes théories ISU est l'idée d'un état de l'information qui est modifié par des règles de mise à jour déclenchées par des mouvements de dialogue. En résumé, une théorie de dialogue ISU consiste en :
 \begin{itemize}
-	\item Une caractérisation des états de l'information, qui décrit tous les aspects du contexte du dialogue ainsi que les facteurs de motivation internes;
-	\item Un ensemble de mouvements de dialogue. Ceux-ci sont généralement associés à des énoncés ou à des parties d'énoncés par les entités participants au dialogue;
-	\item Un ensemble de règles de mise à jour, qui régissent la mise à jour de l'état des informations. Une règle de mise à jour consiste en une liste de conditions préalables sur l'état d'information et une liste d'effets qui modifient l'état d'information;
-	\item Une stratégie de mise à jour pour décider quelle(s) règle(s) sélectionner à un moment donné.
+	\item une caractérisation des états de l'information, qui décrit tous les aspects du contexte du dialogue ainsi que les facteurs de motivation internes ;
+	\item un ensemble de mouvements de dialogue. Ceux-ci sont généralement associés à des énoncés ou à des parties d'énoncés par les entités participants au dialogue ;
+	\item un ensemble de règles de mise à jour, qui régissent la mise à jour de l'état des informations. Une règle de mise à jour consiste en une liste de conditions préalables sur l'état d'information et une liste d'effets qui modifient l'état d'information ;
+	\item une stratégie de mise à jour pour décider quelle(s) règle(s) sélectionner à un moment donné.
 \end{itemize}
 
 ~\\\indent
-Une librairie Python permet de facilité l'implémentation de ce paradigme de gestion de dialogue: Trindikit. \\
-Cette solution pourrait s'adapter à notre projet car elle est très générale et peut s'adapter à un grand éventail de dialogues possibles. Mais elle est aussi très complexe et nécessite une étude approfondie des théories ISU ainsi qu'une formation complète sur la librairie Trindikit qui est par ailleurs peu documentée et peu mise à jour. Cette solution ne satisfait donc pas le critère : \og la mise en place doit être rapide, réalisable dans un projet de type \textit{Proof of Concept} \fg. Nous avons donc décider d'écarter cette solution.
+Une librairie Python permet de faciliter l'implémentation de ce paradigme de gestion de dialogue : \texttt{Trindikit}. \\
+Cette solution pourrait s'adapter à notre projet car elle est très générale et peut s'adapter à un grand éventail de dialogues possibles. Mais elle est aussi très complexe et nécessite une étude approfondie des théories ISU ainsi qu'une formation complète sur la librairie Trindikit qui est par ailleurs peu documentée et peu mise à jour. Cette solution ne satisfait donc pas le critère : \og la mise en place doit être rapide, réalisable dans un projet de type \textit{Proof of Concept} \fg. Nous avons donc décidé d'écarter cette solution.
 
 \FloatBarrier
 
 \subsubsection{Le dialogue à structure hiérarchique}
-La dialogue à structure hiérarchique, est une méthode de gestion de dialogue qui se base sur une ou plusieurs taches précises. Elle comprend une architecture deux tiers (figure \ref{architecture-hierarchique}). Une partie qui s'occupe des aspects spécifiques du dialogue en fonction de la tâche voulue. Et une autre partie qui s'occupe du contrôle et du flux de dialogue indépendamment des spécificités de ce dernier. Le principe est le suivant: \\
+La dialogue à structure hiérarchique, est une méthode de gestion de dialogue qui se base sur une ou plusieurs tâches précises. Elle comprend une architecture deux tiers (figure \ref{architecture-hierarchique}). Une partie qui s'occupe des aspects spécifiques du dialogue en fonction de la tâche voulue. Et une autre partie qui s'occupe du contrôle et du flux de dialogue indépendamment des spécificités de ce dernier. Le principe est le suivant: \\
 La partie spécifique aux taches est composées d'un arbre chacun dédié à une tache ou sous-tache (figure \ref{architecture-hierarchique}). Il y a quatre type d'agent:
 \begin{itemize}
 	\item Informer : envoie une informations à l'utilisateur;
@@ -46,8 +46,8 @@ La partie spécifique aux taches est composées d'un arbre chacun dédié à une
 	\item Attendre : attend une informations de l'utilisateur sans lui demander;
 	\item Exécuter : exécute une action: accès à une base de données, appel à un API ...  
 \end{itemize} 
-Les agents composants cet arbre seront alors placés dans une pile d'exécution qui sera changeante à chaque étape du dialogue en fonction de l'arbre de départ et des dépendances entre chaque tache. (figure \ref{execution-hierarchique}) (Exemple: il est nécessaire de s'identifier avant d'accéder à ses e-mails). Et cette pile sera exécuter dans l'ordre.\\
-La partie indépendante des spécificités des taches du dialogues est composée de cette pile d'agent, ainsi que d'un agenda des attentes (expectation agenda), qui résume toutes les informations que l'agent attend à chaque phase du dialogue. Cette agenda permet notamment de gérer la sur-informations que l'utilisateur peut donner. Exemple: On demande à l'utilisateur quel jour il veut programmer son réveil et il répond \og Demain à 8h \fg, 8h est alors considéré comme de la sur-information mais l'agenda permet de la traiter pour ne pas à avoir à demander l'heure à la phase suivante.
+Les agents composant cet arbre seront alors placés dans une pile d'exécution qui sera changeante à chaque étape du dialogue en fonction de l'arbre de départ et des dépendances entre chaque tâche. (figure \ref{execution-hierarchique}) \textit{Exemple: il est nécessaire de s'identifier avant d'accéder à ses e-mails}. Et cette pile sera exécutée dans l'ordre.\\
+La partie indépendante des spécificités des tâches du dialogue est composée de cette pile d'agent, ainsi que d'un agenda des attentes (\textit{expectation agenda}), qui résume toutes les informations que l'agent attend à chaque phase du dialogue. Cette agenda permet notamment de gérer la sur-information que l'utilisateur peut donner. \textit{Exemple: On demande à l'utilisateur quel jour il veut programmer son réveil et il répond \og Demain à 8h \fg, 8h est alors considéré comme de la sur-information mais l'agenda permet de la traiter pour ne pas à avoir à demander l'heure à la phase suivante}.
 
 
 \FloatBarrier
@@ -73,12 +73,12 @@ La partie indépendante des spécificités des taches du dialogues est composée
 
 \FloatBarrier
 
-Cette solution pourrait parfaitement s'adapter à notre projet car elle permet d'implémenter un dialogue ayant un but spécifique et peut aussi s'incrémenter facilement en cas d'amélioration possible de notre agent. Elle peut aussi permettre de récolter des informations dans n'importe quel ordre. En revanche la seule implémentation connue et répandue de cette technique est \textit{Ravenclaw} qui est un framework en c++ et qui ne tourne que dans un environnement Windows. Aucun d'entre nous ne maîtrisant ce langage ou cet environnement nous avons décider d'abandonner cette solution. 
+Cette solution pourrait parfaitement s'adapter à notre projet car elle permet d'implémenter un dialogue ayant un but spécifique et peut aussi s'incrémenter facilement en cas d'amélioration possible de notre agent. Elle peut aussi permettre de récolter des informations dans n'importe quel ordre. En revanche la seule implémentation connue et répandue de cette technique est \textit{Ravenclaw} qui est un framework en c++ et qui ne tourne que dans un environnement Windows. Aucun d'entre nous ne maîtrisant ce langage ou cet environnement nous avons décideé d'abandonner cette solution. 
 
 \subsubsection{Le dialogue par formulaire}
 Le dialogue par formulaire est une technique de gestion de dialogue qui permet à l'agent assistant de récolter des informations \emph{via} un dialogue avec l'utilisateur (pour notre projet : alarme, heure et jour). 
 
-L'agent pourra enregistrer dans différents champs de son formulaire les informations récoltées. Il pourra ensuite envoyer les données du formulaire à un module de traitement qui effectuera des actions en conséquence de ces données. Le dialogue peut être initié par les deux parties soit l'agent soit l'utilisateur. L'agent cherchera a récolté les informations pour remplir le formulaire. Les informations peuvent être récoltés dans n'importe quel ordre et en un seul ou plusieurs échanges de messages.
+L'agent pourra enregistrer dans différents champs de son formulaire les informations récoltées. Il pourra ensuite envoyer les données du formulaire à un module de traitement qui effectuera des actions en conséquence de ces données. Le dialogue peut être initié par les deux parties soit l'agent soit l'utilisateur. L'agent cherchera à récolter les informations pour remplir le formulaire. Les informations peuvent être récoltées dans n'importe quel ordre et en un seul ou plusieurs échange(s) de messages.
 
 La figure \ref{form-dialog} illustre ce principe.
 \begin{figure}[H]
@@ -91,10 +91,10 @@ La figure \ref{form-dialog} illustre ce principe.
 Cette solution serait très avantageuse pour notre projet. 
 En effet, elle répond à tous les critères énoncés précédemment : 
 \begin{itemize}
-    \item Elle permet de réunir des informations (ici dans un formulaire);
-    \item L'ordre des informations n'est pas défini ;
-    \item L'entrée de l'utilisateur est en langage naturel ainsi que la réponse de l'agent ;
-    \item La mise en place peut sembler être assez longue mais une application en ligne \textit{DialogFlow} permet de faciliter ceci et rendre l'implémentation d'un dialogue par formulaire beaucoup plus rapide.
+    \item elle permet de réunir des informations (ici dans un formulaire) ;
+    \item l'ordre des informations n'est pas défini ;
+    \item l'entrée de l'utilisateur est en langage naturel ainsi que la réponse de l'agent ;
+    \item la mise en place peut sembler être assez longue mais une application en ligne, \texttt{DialogFlow}, permet de faciliter ceci et de rendre l'implémentation d'un dialogue par formulaire beaucoup plus rapide.
 \end{itemize}
 \FloatBarrier
 
@@ -129,4 +129,4 @@ Il retourne alors un arbre syntaxique (figures \ref{arbre-syntaxique} et \ref{ar
 Cette partie des systèmes de dialogues est intéressante mais nous n'avons pas approfondi nos recherche à ce sujet. En effet comme nous l'expliquons dans la prochaine partie nous avons choisi une solution pour la gestion de dialogue qui a son propre analyseur syntaxique et sémantique.
 
 \subsection{Description de la solution retenue}
-Après cette analyse des différentes solutions existantes nous avons décidé d'implémenter la solution de dialogue par formulaire (pour les raisons évoquer précédemment). Plus précisément nous avons utilisés DialogFLow. C'est une plateforme qui permet de rapidement implémenter un système de dialogue par formulaire. Elle effectue une analyse syntaxique et sémantique grâce à des solutions de machine learning. L'analyse sémantique permet entre autre de pouvoir \emph{tagger} des entités (date, lieu, nom). Ces \emph{tags} permettront le remplissage du formulaire.
+Après cette analyse des différentes solutions existantes nous avons décidé d'implémenter la solution de dialogue par formulaire (pour les raisons évoquées précédemment). Plus précisément nous avons utilisé \texttt{DialogFLow}. C'est une plateforme qui permet de rapidement implémenter un système de dialogue par formulaire. Elle effectue une analyse syntaxique et sémantique grâce à des solutions de \textit{Machine Learning}. L'analyse sémantique permet entre autre de pouvoir \emph{tagger} des entités (date, lieu, nom). Ces \emph{tags} permettront le remplissage du formulaire.
