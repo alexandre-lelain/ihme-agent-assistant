@@ -1,24 +1,31 @@
 \chapter*{Conclusion}\addcontentsline{toc}{chapter}{Conclusion}
 \thispagestyle{plain}
-~\\[1cm]
+~\\[0.5cm]
 { \large
 
 \section{Bilan}
-Le bilan de se projet est satisfaisant nous avons répondus aux spécifications et à la problématique. En effet notre agent conversationnel sur mobile répond aux critères suivants établis dans les spécifications:
+Le bilan de ce projet est très satisfaisant puisque nous avons répondu aux spécifications que nous nous étions fixées et à la problématique. 
+
+En effet notre agent conversationnel sur mobile répond aux critères suivants, établis dans les spécifications :
 \begin{itemize}
-	\item Il peut dialoguer en langage naturelle avec l'utilisateur;
+	\item Il peut dialoguer en langage naturel avec l'utilisateur;
 	\item La communication peut être textuelle ou vocale;
-	\item Il permet la création d'un réveil;
-	\item L'ordre des informations données par l'utilisateur nécessaires à la mise en place du réveil n'a pas d'importance;
-	\item Notre application récupère la géolocalisation et la météo associé de l'utilisateur pour programmer une sonnerie relative à cette météo (un son de pluie s'il pleut);
-	\item L'agent est robuste et peut gérer une requête mal comprise ou n'ayant pas de rapport avec la programmation d'un réveil (\og\emph{je n'ai pas compris}\fg,\og\emph{pouvez-vous répéter ?}\fg ).
+	\item Il permet la création d'une alarme ;
+	\item L'ordre des informations données par l'utilisateur nécessaires à la mise en place de l'alarme n'a pas d'importance;
+	\item Notre application récupère la géolocalisation de l'utilisateur et la météo associée pour programmer une sonnerie relative à cette météo (un son de pluie s'il pleut, etc.) ;
+	\item L'agent est robuste et peut gérer une requête mal comprise ou n'ayant pas de rapport avec la programmation d'un réveil (\emph{fallback intents} : \og\emph{je n'ai pas compris}\fg, \og\emph{pouvez-vous répéter ?}\fg).
 \end{itemize}
 
+~\\\indent
+Ce projet a été très intéressant pour nous puisqu'il nous a amené à découvrir une multitude de technologies (\texttt{reactive-native}, développement Android, création d'un agent conversationnel sur \texttt{DialogFlow}, etc.). 
+
+Par ailleurs, il nous a permi de mettre en application des compétences théoriques acquises au cours de notre formation dans le département ASI, notamment pour ce qui est de la conception de l'architecture de notre système et des méthodes de communications asynchrones entre le client et le serveur, ainsi qu'entre le serveur et des API externes.
+
 \section{Améliorations possibles}
-Néanmoins ce prototype reste largement perfectible, et de nouvelles fonctionnalités pourraient être intéressante à développer. Nous avons donc lister certaines d'entre elle que nous avons retenues tout au long du projet:
+Néanmoins ce prototype reste largement perfectible, et de nouvelles fonctionnalités pourraient être intéressantes à développer. Nous avons donc listé certaines d'entre elles que nous avons retenues tout au long du projet:
 \begin{itemize}
-	\item Pour le moment notre application n'accède pas à la fonction réveil de Androïd, mais créer une notification avec une musique associée. Une amélioration possible serait donc de pouvoir passer directement par l'application native d'Androïd;
-	\item Une autre amélioration possible serait que l'agent puisse envoyer des notifications à l'utilisateurs pour lui rappeler de programmer un réveil le soir par exemple si aucun n'est programmé. Ou d'apprendre les habitudes de l'utilisateur pour lui proposer un réveil;
-	\item On peut aussi imaginer l'assistant demander si l'utilisateur préfère mettre une musique de son choix comme réveil en accédant aux musiques enregistrées sur son téléphone.
+	\item Pour le moment notre application n'accède pas à la fonction réveil de Android, mais crée une notification avec une musique associée. Une amélioration possible serait donc de pouvoir passer directement par l'application native d'Android;
+	\item Une autre amélioration possible serait que l'agent puisse envoyer des notifications à l'utilisateur pour lui rappeler de programmer un réveil le soir par exemple si aucun n'est programmé, ou d'apprendre les habitudes de l'utilisateur pour lui proposer un de régler un réveil ;
+	\item On peut aussi imaginer que l'assistant puisse demander si l'utilisateur préfère mettre une musique de son choix comme réveil en accédant aux musiques enregistrées sur son téléphone.
 \end{itemize}
 }
