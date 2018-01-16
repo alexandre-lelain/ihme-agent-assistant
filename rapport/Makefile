@@ -7,7 +7,7 @@ compile:
 	pdflatex RapportIHME.tex
 
 clean:
-	find . -type f -not -name '*.tex' -not -name '*.png' -not -name '*.pdf' -not -name 'Makefile' -delete
+	find . -type f -not -name '*.tex' -not -name '*.png' -not -name '*.jpg' -not -name '*.pdf' -not -name 'Makefile' -delete
 	# rm *.aux 
 	# rm *.log
 	# rm *.out

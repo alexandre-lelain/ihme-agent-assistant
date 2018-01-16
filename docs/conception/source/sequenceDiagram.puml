@@ -1,11 +1,15 @@
 @startuml
 actor User
+box "Client side"
 entity Agent as Assistant
-entity DialogView as Dialog
+entity Dialog as Dialog
 entity AgentAPI
+end box
+box "Server side"
 entity RestServer as server
 entity DialogManager as dm
 entity AlarmFormDialog as NLU
+end box
 
 User -> Assistant : set alarm at @datetime
 activate Assistant
