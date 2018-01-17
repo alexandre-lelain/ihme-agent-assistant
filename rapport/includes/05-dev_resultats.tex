@@ -7,7 +7,7 @@ le système de dialogue.\\
 
 Nous avons décidé d'adopter une architecture classique mais efficace client/serveur afin de gérer les traitements liés au DialogManager uniquement coté serveur. Afin 
 de permettre à l'application client de communiquer avec notre agent assistant, nous avons choisis d'implémenter un Serveur REST écrit en \textbf{Node.js}\cite{node} en
-utilisant le module \textbf{Express.js}\cite{express} qui permet de déployer rapidement un serveur REST scalable et de fournir une API simple et efficace.
+utilisant le module \textbf{Express.js}\cite{express} qui permet de déployer rapidement un serveur REST scalable et de fournir une API simple et efficace.\\
 
 Coté client, nous avons choisis de créer une application mobile en utilisant la technologie open-source \textbf{react-native}\cite{reactnative} de Facebook couplée 
 au framework \textbf{create-react-native-app}\cite{createnative} pour plusieurs raisons : 
@@ -21,17 +21,17 @@ au framework \textbf{create-react-native-app}\cite{createnative} pour plusieurs 
 
 Voici un diagramme de déploiement qui récapitule le plus simplement et clairement possible l'ensemble de notre architecture :
 
-% \begin{figure}[H]
-% 	\centering
-% 		\centering
-% 		\includegraphics[width=0.9\textwidth]{images/diagdeploiement.png}
-% 		\caption{Architecture de notre solution}
-% \end{figure}
+\begin{figure}[H]
+	\centering
+		\centering
+		\includegraphics[width=0.9\textwidth]{../docs/conception/build/architectureDiagram.png}
+		\caption{Architecture de notre solution}
+\end{figure}
 
 
 \section{Gestion de projet}
 
-Pour la gestion du projet, nous avons choisis d'utiliser l'outil \textbf{Trello}\cite{trello} afin de décomposer le projet en différentes tâches et ainsi simpflifier 
+Pour la gestion du projet, nous avons choisis d'utiliser l'outil \textbf{Trello}\cite{trello} afin de décomposer le projet en différentes tâches et ainsi simplifier 
 la répartition du travail à effectuer ainsi que le développement. 
 
 \section{Développement}
@@ -64,9 +64,9 @@ Dans chaque phrase nous allons indiquer à notre agent quels \textbf{tags} il do
         \caption{Phase de tagging}
 \end{figure}
 
-Commen vous pouvez le constater à la figure suivante, pour chacun des tags, nous indiquons s'il doit être obligatoire, son type et plusieurs réponses possibles de l'agent si jamais ce tag est absent. DialogFlow gère 
-très bien les notions de \textbf{Contexte}, c'est pourquoi lorsqu'un dialogue débuite avec notre agent, il va garder en mémoire les tags qu'il aura extrait depuis le 
-début de la conversation. Il est donc très facile de réorienter l'utilisateur vers l'information manquante pour parametrer une alarme. 
+Comme vous pouvez le constater à la figure suivante, pour chacun des tags, nous indiquons s'il doit être obligatoire, son type et plusieurs réponses possibles de l'agent si jamais ce tag est absent. DialogFlow gère 
+très bien les notions de \textbf{Contexte}, c'est pourquoi lorsqu'un dialogue débute avec notre agent, il va garder en mémoire les tags qu'il aura extrait depuis le 
+début de la conversation. Il est donc très facile de réorienter l'utilisateur vers l'information manquante pour paramétrer une alarme. 
 
 \begin{figure}[H]
     \centering
@@ -85,9 +85,9 @@ ces tags, nous pouvons très facilement les ré-insérer dans la réponse de l'a
         \caption{Réponses possibles de l'agents lorsqu'une intention est complète}
 \end{figure}
 
-Nous avons également configurer quelques autres \emph{intentions} basiques (Demander à l'agent s'il va bien, lui dire bonjour,etc..) afin de rendre l'agent plus convivial 
+Nous avons également configuré quelques autres \emph{intentions} basiques (Demander à l'agent s'il va bien, lui dire bonjour,etc..) afin de rendre l'agent plus convivial 
 pour l'utilisateur. DialogFlow possède également un onglet "training" sur lequel nous pouvons visualiser l'enemble des dialogues qui ont été effectués avec notre agent. Ainsi,
-si un utilisateur a demandé la programmtion d'une alarme d'une façon que nous n'avions pas envisagé, et que l'agent n'a pas pu comprendre la demande, nous pouvons 
+si un utilisateur a demandé la programmation d'une alarme d'une façon que nous n'avions pas envisagé, et que l'agent n'a pas pu comprendre la demande, nous pouvons 
 manuellement indiquer que cette demande correspond à notre \emph{intention} "mettre une alarme".
 
 \begin{figure}[H]
@@ -105,7 +105,7 @@ qui nous permet de converser avec notre agent via des simples requêtes HTTP. Ch
 qui lui est attribué lors de sa création. Cela permet de gérer très facilement les \emph{contextes}.\\
 
 Notre serveur servira donc de "sur-couche" qui uniformisera l'échange entre le client et DialogFlow. Écrit en \textbf{Node.js} avec son module \textbf{Express.js},
-Il met à disposition du client 2 \textbf{endpoints} :\\
+il met à disposition du client 2 \textbf{endpoints} :\\
 \begin{itemize}
     \item \textbf{/dialog/create} : ce endpoint sert à créer un dialogue
     \begin{itemize}
@@ -143,7 +143,7 @@ Si notre agent assistant détecte que l'intention est complète (ie les tags son
         "datetime": "YYYY-MM-dd HH:mm:ss"
     },
     "error": true|false,
-    }
+}
 \end{lstlisting}
 
 Sinon, il retourne cette réponse : \\
@@ -169,7 +169,7 @@ notre application mobile de façon indépendante et sans néccéssiter d'avoir u
 \subsection{Application mobile}
 
 Comme indiqué plus haut, nous avons choisis de développer notre application mobile en \textbf{react-native}. Facile à prendre en main, \textbf{react-native} possède 
-pleins d'outils déja tout faits pour gérer un système de dialogue (visuellement parlant - entrées et sorties) et pour communiquer efficacement avec une API REST.\\
+pleins d'outils déja tout faits pour gérer les entrées et sorties d'un système de dialogue et pour communiquer efficacement avec une API REST.\\
 
 L'application propose donc simplement une interface permettant de dialoguer avec notre agent assistant via une entrée textuelle ou via une entrée vocale (microphone du mobile).
 Elle possède également une sortie audio pour que l'agent puisse communiquer via la voix avec l'utilisateur, en plus du système de \emph{Chat}.\\
@@ -178,7 +178,7 @@ L'agent est simplement représenté par une petite icône situé à coté de cha
 
 \section{Résultats}
 
-Nous avons répondus à l'ensemble des problématiques et objectifs du projet, et l'ensemble de notre système est fonctionnel et opérationnel. Voici comment utiliser notre prototype : \\
+Nous avons répondu à l'ensemble des problématiques et objectifs du projet, et l'ensemble de notre système est fonctionnel et opérationnel. Voici comment utiliser notre prototype : \\
 
 Dans la suite, voici des icônes en figures \ref{hand} et \ref{voice} qui donneront des informations sur les différentes figures de l'application.
 
