@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+actor user
+
+node "Mobile Client" <<Device>> {
+    component chronos [
+        <b>"Chronos" app</b>
+        ---
+        react-native
+    ]
+}
+
+node "Server" <<Device>> {
+    component webserver [
+        <b>Web server</b>
+        ---
+        node.js
+    ]
+}
+
+node "External server" <<Device>> {
+    component dialogflow [
+        <b>DialogFlow server</b>
+        ---
+    ]
+}
+
+webserver <--> chronos
+webserver <-> dialogflow
+user -left-> chronos
+@enduml
