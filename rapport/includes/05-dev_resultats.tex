@@ -2,15 +2,15 @@
 
 \section{Liste complète des solutions}
 
-Comme indiqué et jutifié précédement, nous avons décidé d'utiliser l'outil \textbf{DialogFlow} de Google\cite{dialogflow} pour répondre à notre problématique principale, à savoir 
+Comme indiqué et jutifié précédement, nous avons décidé d'utiliser l'outil \textbf{DialogFlow} de Google\cite{dialogflow} pour répondre à notre problématique principale, à savoir
 le système de dialogue.\\
 
-Nous avons décidé d'adopter une architecture client/serveur, classique mais efficace afin de gérer les traitements liés au \emph{DialogManager} uniquement coté serveur. Afin 
+Nous avons décidé d'adopter une architecture client/serveur, classique mais efficace afin de gérer les traitements liés au \emph{DialogManager} uniquement coté serveur. Afin
 de permettre à l'application client de communiquer avec notre agent assistant, nous avons choisis d'implémenter un Serveur REST écrit en \textbf{Node.js}\cite{node} en
 utilisant le module \textbf{Express.js}\cite{express} qui permet de déployer rapidement un serveur REST scalable et de fournir une API simple et efficace.\\
 
-Coté client, nous avons choisis de créer une application mobile en utilisant la technologie open-source \textbf{react-native}\cite{reactnative} de Facebook couplée 
-au framework \textbf{create-react-native-app}\cite{createnative} pour plusieurs raisons : 
+Coté client, nous avons choisis de créer une application mobile en utilisant la technologie open-source \textbf{react-native}\cite{reactnative} de Facebook couplée
+au framework \textbf{create-react-native-app}\cite{createnative} pour plusieurs raisons :
 \begin{itemize}
     \item Permet de créer une application \emph{cross-plateform} (iOS et Android) ;
     \item Simple et rapide à déployer contrairement à une application native ;
@@ -32,8 +32,8 @@ En figure \ref{archi}, vous pouvez trouver un diagramme de déploiement qui réc
 
 \section{Gestion de projet}
 
-Pour la gestion du projet, nous avons choisi d'utiliser l'outil \textbf{Trello}\cite{trello} afin de décomposer le projet en différentes tâches et ainsi simplifier 
-la répartition du travail à effectuer ainsi que le développement. 
+Pour la gestion du projet, nous avons choisi d'utiliser l'outil \textbf{Trello}\cite{trello} afin de décomposer le projet en différentes tâches et ainsi simplifier
+la répartition du travail à effectuer ainsi que le développement.
 
 \section{Développement}
 
@@ -41,7 +41,7 @@ la répartition du travail à effectuer ainsi que le développement.
 
 \subsubsection{Système de dialogue}
 
-Comme indiqué ci-dessus, nous utilisons \textbf{DialogFlow} pour gérer la logique du système de dialogue. DialogFlow propose en effet une interface web très simple à 
+Comme indiqué ci-dessus, nous utilisons \textbf{DialogFlow} pour gérer la logique du système de dialogue. DialogFlow propose en effet une interface web très simple à
 l'intention du développeur qui lui permet de créer un \emph{chat bot} (i.e. agent conversationnel). Nous pouvons ainsi donner et configurer des \emph{intentions} à notre agent (figure \ref{intents}).\\
 
 \begin{figure}[H]
@@ -52,11 +52,11 @@ l'intention du développeur qui lui permet de créer un \emph{chat bot} (i.e. ag
         \label{intents}
 \end{figure}
 
-Notre principale intention (i.e. motivation) est de converser avec notre agent sur la programmation d'une alarme. Pour ceci, nous créons une \emph{Intent} (i.e. intention) dont 
+Notre principale intention (i.e. motivation) est de converser avec notre agent sur la programmation d'une alarme. Pour ceci, nous créons une \emph{Intent} (i.e. intention) dont
 la configuration se fera en plusieurs étapes.\\
 
 La première étape constitue une phase de \textbf{tagging} : nous allons écrire notre intention de programmer une alarme via plusieurs types de phrases possibles et différentes.
-Dans chaque phrase nous allons indiquer à notre agent quels \textbf{tags} il doit systématiquement parser. Il devra parser 3 tags différents qui sont : [alarme], [date] et 
+Dans chaque phrase nous allons indiquer à notre agent quels \textbf{tags} il doit systématiquement parser. Il devra parser 3 tags différents qui sont : [alarme], [date] et
 [heure]. Un exemple est donné en figure \ref{tagging}.
 
 \begin{figure}[H]
@@ -67,21 +67,21 @@ Dans chaque phrase nous allons indiquer à notre agent quels \textbf{tags} il do
         \label{tagging}
 \end{figure}
 
-Comme vous pouvez le constater à la figure \ref{action}, pour chacun des tags, nous indiquons s'il est obligatoire, son type et plusieurs réponses possibles de l'agent si jamais ce \emph{tag} est absent. 
+Comme vous pouvez le constater à la figure \ref{action}, pour chacun des tags, nous indiquons s'il est obligatoire, son type et plusieurs réponses possibles de l'agent si jamais ce \emph{tag} est absent.\\
 
-DialogFlow gère 
-très bien les notions de \textbf{contexte}, c'est pourquoi lorsqu'un dialogue débute avec notre agent, il va garder en mémoire les \emph{tags} qu'il aura extrait depuis le 
-début de la conversation. Il est donc très facile de réorienter l'utilisateur vers l'information manquante pour paramétrer une alarme. 
+DialogFlow gère
+très bien les notions de \textbf{contexte}, c'est pourquoi lorsqu'un dialogue débute avec notre agent, il va garder en mémoire les \emph{tags} qu'il aura extrait depuis le
+début de la conversation. Il est donc très facile de réorienter l'utilisateur vers l'information manquante pour paramétrer une alarme.
 
 \begin{figure}[H]
     \centering
         \centering
         \includegraphics[width=\textwidth]{images/action.png}
-        \caption{Événements}
+        \caption{Les tags à extraire}
         \label{action}
 \end{figure}
 
-Finalement, nous devons configurer les différentes réponses possibles de l'agent lorsque tous les \emph{tags} d'une intention ont été reconnus. DialogFlow ayant gardé en mémoire 
+Finalement, nous devons configurer les différentes réponses possibles de l'agent lorsque tous les \emph{tags} d'une intention ont été reconnus. DialogFlow ayant gardé en mémoire
 ces \emph{tags}, nous pouvons très facilement les ré-insérer dans la réponse de l'agent comme sur la figure \ref{answer}.
 
 \begin{figure}[H]
@@ -92,11 +92,11 @@ ces \emph{tags}, nous pouvons très facilement les ré-insérer dans la réponse
         \label{answer}
 \end{figure}
 
-Nous avons également configuré quelques autres \emph{intentions} basiques (demander à l'agent s'il va bien, lui dire bonjour, etc.) afin de rendre l'agent plus convivial 
-pour l'utilisateur. 
+Nous avons également configuré quelques autres \emph{intentions} basiques (demander à l'agent s'il va bien, lui dire bonjour, etc.) afin de rendre l'agent plus convivial
+pour l'utilisateur.\\
 
 DialogFlow possède également un onglet \og \emph{training} \fg{} (figure \ref{training}) sur lequel nous pouvons visualiser l'ensemble des dialogues qui ont été effectués avec notre agent. Ainsi,
-si un utilisateur a demandé la programmation d'une alarme d'une façon que nous n'avions pas envisagé, et que l'agent n'a pas pu comprendre la demande, nous pouvons 
+si un utilisateur a demandé la programmation d'une alarme d'une façon que nous n'avions pas envisagé, et que l'agent n'a pas pu comprendre la demande, nous pouvons
 manuellement indiquer que cette demande correspond à notre \emph{intention} \og mettre une alarme \fg, ce qui permet à DialogFlow de réapprendre un modèle plus robuste pour notre agent.
 
 \begin{figure}[H]
@@ -119,7 +119,7 @@ Notre serveur servira donc de \og sur-couche \fg{} qui uniformisera l'échange e
     \item \textbf{/dialog/create} : ce \emph{endpoint} sert à créer un dialogue
     \begin{itemize}
         \item méthode : POST
-        \item body JSON 
+        \item body JSON
         \begin{lstlisting}[language=Javascript]
 {
     "text": "la 1ere replique de l'utilisateur"
@@ -129,7 +129,7 @@ Notre serveur servira donc de \og sur-couche \fg{} qui uniformisera l'échange e
     \item \textbf{/dialog/{id}/add} : ce \emph{endpoint} sert à ajouter à une conversation \og id \fg{} une entrée.
     \begin{itemize}
         \item méthode : PUT
-        \item body JSON 
+        \item body JSON
         \begin{lstlisting}[language=Javascript]
 {
     "text": "la 1ere replique de l'utilisateur"
@@ -171,13 +171,13 @@ De cette façon, l'application client peut connaître très facilement l'état d
 
 \subsubsection{Intégration}
 
-Afin de faciliter le développement de notre application mobile, nous avons demandé à l'INSA de nous prêter un serveur pour que nous puissions y intégrer notre 
-application REST. Une fois l'API REST complétement développée et disponible \emph{via} l'adresse du serveur prêté (\url{insa-17-ihme@insa-rouen.fr}), nous avons pu développer 
+Afin de faciliter le développement de notre application mobile, nous avons demandé à l'INSA de nous prêter un serveur pour que nous puissions y intégrer notre
+application REST. Une fois l'API REST complétement développée et disponible \emph{via} l'adresse du serveur prêté (\url{insa-17-ihme@insa-rouen.fr}), nous avons pu développer
 notre application mobile de façon indépendante et sans néccessiter d'avoir une instance de notre serveur REST qui tourne en local.
 
 \subsection{Application mobile}
 
-Comme indiqué plus haut, nous avons choisis de développer notre application mobile en \textbf{react-native}. Facile à prendre en main, \textbf{react-native} possède 
+Comme indiqué plus haut, nous avons choisis de développer notre application mobile en \textbf{react-native}. Facile à prendre en main, \textbf{react-native} possède
 plein d'outils déjà tout fait pour gérer les entrées et sorties d'un système de dialogue et pour communiquer efficacement avec une API REST.\\
 
 L'application propose donc simplement une interface permettant de dialoguer avec notre agent assistant \emph{via} une entrée textuelle ou \emph{via} une entrée vocale (microphone du mobile).
@@ -217,10 +217,10 @@ Voici l'écran principal de l'application lors de son ouverture :\\
 \end{figure}
 
 Vous pouvez communiquer avec l'agent \emph{via} le microphone en appuyant une fois sur l'icône de micro
-ou directement en entrant le texte dans le champ texte se situant à coté de l'icône de micro. 
+ou directement en entrant le texte dans le champ texte se situant à coté de l'icône de micro.
 
 ~\\\indent Vous n'êtes pas obligé de donner à l'agent l'ensemble des données
-dont il a besoin pour configurer votre alarme \--- en effet vous pouvez très bien y aller étape par étape comme nous allons le voir. 
+dont il a besoin pour configurer votre alarme \--- en effet vous pouvez très bien y aller étape par étape comme nous allons le voir.
 
 ~\\\indent Vous pouvez commencer par cliquer
 une fois sur l'icône micro et dire que vous désirez mettre une alarme (figures \ref{B} et \ref{C}).
@@ -250,7 +250,7 @@ L'application détectera automatiquement que vous avez cessé de parler, vous n'
   \label{D}
 \end{figure}
 
-Puis pour finir en lui indiquant l'heure à laquelle déclencher l'alarme. 
+Puis pour finir en lui indiquant l'heure à laquelle déclencher l'alarme.
 
 ~\\\indent S'il a bien reconnu votre intention, l'agent vous demandera ensuite une confirmation comme l'illustre la figure \ref{E}.
 
@@ -271,7 +271,7 @@ Vous auriez très bien pu converser avec l'agent via l'entrée textuelle, comme 
   \label{F}
 \end{figure}
 
-Si vous avez confirmé la programmation de l'alarme, l'agent enregistrera votre demande. Une minute avant le déclenchement de l'alarme demandée, il vous indiquera la météo associée à votre géolocalisation. 
+Si vous avez confirmé la programmation de l'alarme, l'agent enregistrera votre demande. Une minute avant le déclenchement de l'alarme demandée, il vous indiquera la météo associée à votre géolocalisation.
 
 ~\\\indent
 Comme le montre la figure suivante, vous pouvez également programmer l'alarme en une seule phrase si celle-ci est complète (figure \ref{G}).
@@ -302,4 +302,4 @@ Lorsque qu'une alarme se déclenchera, vous recevrez une notification accompagn�
   \label{J}
 \end{figure}
 
-Une vidéo de démonstration est également disponible avec ce rapport et est située dans le dossier \emph{demo} à la racine du projet.\\ 
+Une vidéo de démonstration est également disponible avec ce rapport et est située dans le dossier \emph{demo} à la racine du projet.\\
