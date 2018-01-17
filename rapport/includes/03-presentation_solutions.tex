@@ -16,14 +16,14 @@ Notre agent assistant devra implémenter un système de dialogue avec l'utilisat
 \section{Solutions scientifiques}
 
 \subsection{Gestion de dialogue}
-Notre problématique générale est donc d'implémenter un système de dialogue. Plusieurs solutions existent pour ce genre de problème et nous avons donc étudié les plus répandues pour choisir celle (ou celles) qui serait la plus adéquate à notre problème. Notamment avant de pouvoir réaliser la conception, il nous a fallu définir quelle serait notre gestion de dialogue (par formulaire, état de l'information, etc.). Ce choix était primordial car il risquait fortement d'impacter la manière dont nous allions réaliser notre projet et par conséquent notre conception.
+Notre problématique générale est donc d'implémenter un système de dialogue. Plusieurs solutions existent pour ce genre de problème et nous avons donc étudié les plus répandues pour choisir celle (ou celles) qui serait la plus adéquate à notre problème. Notamment avant de pouvoir réaliser la conception, il nous a fallu définir quelle serait notre gestion de dialogue \cite{dialog-manager} (par formulaire, état de l'information, etc.). Ce choix était primordial car il risquait fortement d'impacter la manière dont nous allions réaliser notre projet et par conséquent notre conception.
 
 
 \FloatBarrier
 
 \subsubsection{Le dialogue par état de l'information ou ISU (Information State Update)}
 
-L'approche ISU (Information State Update) est un cadre de gestion de dialogue. Le principe des différentes théories ISU est l'idée d'un état de l'information qui est modifié par des règles de mise à jour déclenchées par des mouvements de dialogue. En résumé, une théorie de dialogue ISU consiste en :
+L'approche ISU\cite{ISU} (Information State Update) est un cadre de gestion de dialogue. Le principe des différentes théories ISU est l'idée d'un état de l'information qui est modifié par des règles de mise à jour déclenchées par des mouvements de dialogue. En résumé, une théorie de dialogue ISU consiste en :
 \begin{itemize}
 	\item une caractérisation des états de l'information, qui décrit tous les aspects du contexte du dialogue ainsi que les facteurs de motivation internes ;
 	\item un ensemble de mouvements de dialogue. Ceux-ci sont généralement associés à des énoncés ou à des parties d'énoncés par les entités participants au dialogue ;
@@ -79,13 +79,13 @@ La partie indépendante des spécificités des tâches du dialogue est composée
 	\begin{minipage}{.45\textwidth}
 		\centering
 		\includegraphics[width=1\textwidth]{images/hierarchique_manager.jpg}
-		\caption{Principe d'exécution d'un dialogue à structure hiérarchique}
+		\caption{Principe d'exécution d'un dialogue à structure hiérarchique\cite{hierachique-dialogue}}
 		\label{execution-hierarchique}
 	\end{minipage}%
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{images/hierarchique_manager_2.jpg}
-		\caption{Architecture d'un dialogue à structure hiérarchique}
+		\caption{Architecture d'un dialogue à structure hiérarchique\cite{hierachique-dialogue}}
 		\label{architecture-hierarchique}
 	\end{minipage}
 \end{figure}
@@ -96,7 +96,7 @@ Cette solution pourrait parfaitement s'adapter à notre projet car elle permet d
 
 Elle peut aussi permettre de récolter des informations dans n'importe quel ordre. 
 
-En revanche la seule implémentation connue et répandue de cette technique est \textit{Ravenclaw} qui est un framework en \texttt{C++} et qui ne tourne que dans un environnement Windows. Ne maitrisant pas tous ce langage ou cet environnement, nous avons décidé d'abandonner cette solution. 
+En revanche la seule implémentation connue et répandue de cette technique est \textit{Ravenclaw}\cite{ravenclaw} qui est un framework en \texttt{C++} et qui ne tourne que dans un environnement Windows. Ne maitrisant pas tous ce langage ou cet environnement, nous avons décidé d'abandonner cette solution. 
 
 \subsubsection{Le dialogue par formulaire}
 Le dialogue par formulaire est une technique de gestion de dialogue qui permet à l'agent assistant de récolter des informations \emph{via} un dialogue avec l'utilisateur (pour notre projet : alarme, heure et jour). 
@@ -107,7 +107,7 @@ La figure \ref{form-dialog} illustre ce principe.
 \begin{figure}[H]
 \centering
     \includegraphics[scale=0.7]{images/slot.png} %www.dfki.de
-    \caption{Principe du dialogue par formulaire}
+    \caption{Principe du dialogue par formulaire\cite{form-filling}}
     \label{form-dialog}
 \end{figure}
 
@@ -138,14 +138,14 @@ Il retourne alors un arbre syntaxique (figures \ref{arbre-syntaxique} et \ref{ar
 		\centering
 		%www.linguistes.com
 		\includegraphics[width=0.9\textwidth]{images/arbre.png}
-		\caption{Exemple d'arbre syntaxique}
+		\caption{Exemple d'arbre syntaxique\cite{arbre-syntaxique}}
 		\label{arbre-syntaxique}
 	\end{minipage}%
 	\begin{minipage}{0.5\textwidth}
 		\centering
 		%http://french.chass.utoronto.ca/
 		\includegraphics[width=0.9\linewidth]{images/arbre2.png}
-		\caption{Hiérarchie de l'arbre syntaxique}
+		\caption{Hiérarchie de l'arbre syntaxique\cite{arbre-syntaxique2}}
 		\label{arbre-syntaxique2}
 	\end{minipage}
 \end{figure}
