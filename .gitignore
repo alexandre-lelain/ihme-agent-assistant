@@ -2,3 +2,4 @@ server/venv
 conception/plantuml.jar
 .DS_Store
 *.pdf
+docs/installation/accounts_and_api_keys.md
