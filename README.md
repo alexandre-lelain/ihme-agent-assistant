@@ -1,5 +1,12 @@
 # ihme-agent-assistant
 
+At INSA Rouen, we created a mobile application to propose a virtual agent with whom we can discuss.
+It is possible to ask it to set up an alarm. It asks the questions oriented to have all the necessary information.
+
+The buzzer associated with the alarm will match the weather of the user's location when it rings.
+
+See `demo/demo.mp4` to see the result of the project.
+
 # Connection to server via SSH
 
 ## From outside INSA
